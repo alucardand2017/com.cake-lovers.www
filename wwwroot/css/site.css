@@ -1,0 +1,56 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+
+/* Personalizar a cor e o tamanho dos ícones */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #00ff21; /* Cor personalizada */
+    width: 60px; /* Largura personalizada */
+    height: 60px; /* Altura personalizada */
+    border-radius: 50%; /* Deixar os botões circulares */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Adicionar uma sombra */
+}
+
+    /* Adicionar transição para suavizar o hover */
+    .carousel-control-prev-icon:hover,
+    .carousel-control-next-icon:hover {
+        background-color: #ffd800; /* Cor ao passar o mouse */
+        transition: background-color 0.3s ease;
+    }
+
+/* Personalizar a posição dos botões */
+.carousel-control-prev {
+    left: 10px; /* Ajustar a posição do botão anterior */
+}
+
+.carousel-control-next {
+    right: 10px; /* Ajustar a posição do botão próximo */
+}
+
+/* Opcional: Personalizar o botão completo (incluindo o espaçamento ao redor) */
+.carousel-control-prev,
+.carousel-control-next {
+    opacity: 0.5; /* Tornar os botões ligeiramente transparentes */
+}
+
+    .carousel-control-prev:hover,
+    .carousel-control-next:hover {
+        opacity: 1; /* Remover a transparência ao passar o mouse */
+    }
