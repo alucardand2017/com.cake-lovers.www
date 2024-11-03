@@ -1,9 +1,24 @@
+using com.cake_lovers.www.Data;
+using com.cake_lovers.www.Services;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+ConfigurationManager configuration = builder.Configuration; // allows both to access and to set up the config
+var connectionString = builder.Configuration.GetConnectionString("CakeLoversDB");
+
+builder.Services.AddDbContext<CakeLoversDbContext>(opt
+    => opt.UseLazyLoadingProxies().UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddScoped<ProdutoService, ProdutoService>();
 var app = builder.Build();
+
+
+
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

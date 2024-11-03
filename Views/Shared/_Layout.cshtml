@@ -19,21 +19,27 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">A Cake-Lovers</a>
-                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Cup Cakes
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="MaisVendidos">Mais Vendidos</a></li>
-                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Restricoes">Restrições</a></li>
-                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Combos">Combos</a></li>
-                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Premium">Premium</a></li>
-                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Ultimos">Temáticos</a></li>
-                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Ultimos">Promoções</a></li>
+                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Produto" asp-action="Index">Mais Vendidos</a></li>
+                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Produto" asp-action="Index">Restrições</a></li>
+                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Produto" asp-action="Index">Combos</a></li>
+                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Produto" asp-action="Index">Premium</a></li>
+                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Produto" asp-action="Index">Temáticos</a></li>
+                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Produto" asp-action="Index">Promoções</a></li>
 
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Gestão
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Produto" asp-action="Index">Produtos</a></li>
+                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Cliente" asp-action="Index">Clientes</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -41,6 +47,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="SobreNos">Sobre Nós</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Política de Privacidade</a>
                         </li>
                        
                     </ul>
@@ -54,9 +63,9 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted fixed-bottom">
         <div class="container">
-            &copy; 2024 - com.cake_lovers.www - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2024 - Cake-Lovers - <a asp-area="" asp-controller="Home" asp-action="Privacy">Política de Privacidade</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

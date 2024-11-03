@@ -5,38 +5,27 @@ using System.Diagnostics;
 
 namespace com.cake_lovers.www.Controllers
 {
-    public class HomeController : Controller
+    public class ProdutoController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<ProdutoController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public ProdutoController(ILogger<ProdutoController> logger)
         {
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string? termo)
+        {
+            var view = new ProdutoEscolhaModelView();
+            return View(view);
+        }
+        public IActionResult GetAllProdutos()
         {
             return View();
         }
-
-        public IActionResult Privacy()
+        public IActionResult GetByIdProdutos(int id)
         {
             return View();
-        }
-        public IActionResult SobreNos()
-        {
-            return View();
-        }
-        public IActionResult Contato()
-        {
-            var contato = new ContatoModel()
-            {
-                Email = string.Empty,
-                Enviado = false,
-                Nome= string.Empty,
-                Mensagem=string.Empty, 
-            };
-            return View(contato);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

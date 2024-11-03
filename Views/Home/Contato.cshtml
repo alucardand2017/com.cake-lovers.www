@@ -1,0 +1,69 @@
+﻿@using com.cake_lovers.www.Models.ModelView;
+@model ContatoModel
+@{
+    ViewData["Title"] = "Contato";
+}
+
+<h1>@ViewData["Title"]</h1>
+<p>Entre em contato conosco preenchendo o formulário abaixo:</p>
+
+<form method="post">
+    <div class="form-group">
+        <label for="Nome">Nome</label>
+        <input type="text" class="form-control" id="Nome" name="Nome" asp-for="Nome" required />
+        <span asp-validation-for="Nome" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Email">Email</label>
+        <input type="email" class="form-control" id="Email" name="Email" asp-for="Email" required />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Mensagem">Mensagem</label>
+        <textarea class="form-control" id="Mensagem" name="Mensagem" asp-for="Mensagem" rows="4" required></textarea>
+        <span asp-validation-for="Mensagem" class="text-danger"></span>
+    </div>
+    <br />
+    <div class="justify-content-end">
+        <button type="submit" class="btn btn-primary">Enviar</button>
+
+    </div>
+</form>
+
+@if (Model.Enviado)
+{
+        <div class="alert alert-success mt-3">
+            Obrigado pelo seu contato! Entraremos em contato em breve.
+        </div>
+}
+
+<hr />
+<div class="d-flex justify-content-around">
+    <div class="contact-box">
+        <h2>Endereço</h2>
+        <p>
+            Rua das Acácias, 123<br />
+            Bairro Jardim das Flores<br />
+            São Paulo - SP<br />
+            CEP: 01234-567<br />
+            Brasil
+        </p>
+    </div>
+
+    <div class="contact-box">
+        <h2>Telefone</h2>
+        <p>+55 (11) 1234-5678</p>
+    </div>
+
+    <div class="contact-box">
+        <h2>Email</h2>
+        <p>cake-lovers@cruzeirodosul.com</p>
+    </div>
+</div>
+
+<hr />
+
+
+

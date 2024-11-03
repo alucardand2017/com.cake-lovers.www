@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using com.cake_lovers.www.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace com.cake_lovers.www.Models
+namespace com.cake_lovers.www.Data
 {
-    public class CakeLoversDbContext: DbContext
+    public class CakeLoversDbContext : DbContext
     {
         public CakeLoversDbContext(DbContextOptions<CakeLoversDbContext> options)
            : base(options)
