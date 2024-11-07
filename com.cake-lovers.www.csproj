@@ -8,18 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\Images\2.jpg" />
-    <Content Remove="wwwroot\Images\3.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\Images\2.jpg" />
-    <None Include="wwwroot\Images\3.jpg" />
-    <None Include="wwwroot\Images\1.jpg" />
-    <None Include="wwwroot\Images\logo.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.1">

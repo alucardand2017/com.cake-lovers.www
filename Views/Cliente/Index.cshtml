@@ -79,6 +79,8 @@
                     <th class="text-center col-2">@Html.DisplayNameFor(model => model.Clientes[0].NomeCompleto)</th>
                     <th class="text-center col-2">@Html.DisplayNameFor(model => model.Clientes[0].Telefone)</th>
                     <th class="text-center col-2">@Html.DisplayNameFor(model => model.Clientes[0].Email)</th>
+                    <th class="text-center col-2">AÇÕES</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -92,7 +94,9 @@
                             <td class="col-2 text-center">@Html.DisplayFor(model => model.Clientes[i].Telefone)</td>
                             <td class="col-2 text-center">@Html.DisplayFor(model => model.Clientes[i].Email)</td>
                             <td class="col-2 text-center align-middle">
+                                <a class="btn btn-sm btn-danger" asp-action="EditCliente" asp-route-idCliente="@Model.Clientes[i].ClientId"><i class="fa fa-trash"></i></a>
                                 <a class="btn btn-sm btn-danger" asp-action="DeleteCliente" asp-route-idCliente="@Model.Clientes[i].ClientId"><i class="fa fa-trash"></i></a>
+
                             </td>
                         </tr>
                     }

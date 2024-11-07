@@ -9,6 +9,7 @@ namespace com.cake_lovers.www.Data
            : base(options)
         {
         }
+        public DbSet<Contato> Contatos { get; set; }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }

@@ -67,7 +67,7 @@
                 <tr>
                     <th class="text-center col-2">@Html.DisplayNameFor(model => model.Produtos[0].CaminhoFoto)</th>
                     <th class="text-center col-2">@Html.DisplayNameFor(model => model.Produtos[0].ProdutoId)</th>
-                    <th class="text-center col-2">@Html.DisplayNameFor(model => model.Produtos[0].NomeProduto)</th>
+                    <th class="text-center col-3">@Html.DisplayNameFor(model => model.Produtos[0].NomeProduto)</th>
                     <th class="text-center col-2">@Html.DisplayNameFor(model => model.Produtos[0].Preco)</th>
                     <th class="text-center col-2">@Html.DisplayNameFor(model => model.Produtos[0].Estoque)</th>
                 </tr>
@@ -80,7 +80,7 @@
                             <tr>
                                 <td class="col-2 text-center">@Html.DisplayFor(model => model.Produtos[i].CaminhoFoto)</td>
                                 <td class="col-2 text-center">@Html.DisplayFor(model => model.Produtos[i].ProdutoId)</td>
-                                <td class="col-2 text-center">@Html.DisplayFor(model => model.Produtos[i].NomeProduto)</td>
+                                <td class="col-3 text-center">@Html.DisplayFor(model => model.Produtos[i].NomeProduto)</td>
                                 <td class="col-2 text-center">@Html.DisplayFor(model => model.Produtos[i].Preco.ToString("C",new System.Globalization.CultureInfo("pt-BR")))</td>
                                 <td class="col-2 text-center align-middle">
                                     <a class="btn btn-sm btn-danger" asp-action="DeleteFamiliar" asp-route-idProduto="@Model.Produtos[i].ProdutoId"><i class="fa fa-trash"></i></a>

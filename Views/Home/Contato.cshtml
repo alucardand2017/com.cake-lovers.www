@@ -8,6 +8,7 @@
 <p>Entre em contato conosco preenchendo o formulário abaixo:</p>
 
 <form method="post">
+    <input type="hidden" class="form-control" id="Date" name="Date" asp-for="Date" value="@DateTime.Now" />
     <div class="form-group">
         <label for="Nome">Nome</label>
         <input type="text" class="form-control" id="Nome" name="Nome" asp-for="Nome" required />
