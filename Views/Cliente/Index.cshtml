@@ -75,7 +75,7 @@
         <table class="table table-striped table-sm fs-6" id="tabela-familiares">
             <thead>
                 <tr>
-                    <th class="text-center col-2">@Html.DisplayNameFor(model => model.Clientes[0].ClientId)</th>
+                    <th class="text-center col-2">@Html.DisplayNameFor(model => model.Clientes[0].Id)</th>
                     <th class="text-center col-2">@Html.DisplayNameFor(model => model.Clientes[0].NomeCompleto)</th>
                     <th class="text-center col-2">@Html.DisplayNameFor(model => model.Clientes[0].Telefone)</th>
                     <th class="text-center col-2">@Html.DisplayNameFor(model => model.Clientes[0].Email)</th>
@@ -89,14 +89,13 @@
                     for (int i = 0; i < Model.Clientes.Count(); i++)
                     {
                         <tr>
-                            <td class="col-2 text-center">@Html.DisplayFor(model => model.Clientes[i].ClientId)</td>
+                            <td class="col-2 text-center">@Html.DisplayFor(model => model.Clientes[i].Id)</td>
                             <td class="col-2 text-center">@Html.DisplayFor(model => model.Clientes[i].NomeCompleto)</td>
                             <td class="col-2 text-center">@Html.DisplayFor(model => model.Clientes[i].Telefone)</td>
                             <td class="col-2 text-center">@Html.DisplayFor(model => model.Clientes[i].Email)</td>
                             <td class="col-2 text-center align-middle">
-                                <a class="btn btn-sm btn-danger" asp-action="EditCliente" asp-route-idCliente="@Model.Clientes[i].ClientId"><i class="fa fa-trash"></i></a>
-                                <a class="btn btn-sm btn-danger" asp-action="DeleteCliente" asp-route-idCliente="@Model.Clientes[i].ClientId"><i class="fa fa-trash"></i></a>
-
+                                <a class="btn btn-sm btn-danger" asp-action="EditCliente" asp-route-idCliente="@Model.Clientes[i].Id"><i class="fa fa-trash"></i></a>
+                                <a class="btn btn-sm btn-danger" asp-action="DeleteCliente" asp-route-idCliente="@Model.Clientes[i].Id"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                     }

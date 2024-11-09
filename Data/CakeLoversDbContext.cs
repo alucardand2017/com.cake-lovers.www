@@ -16,5 +16,19 @@ namespace com.cake_lovers.www.Data
         public DbSet<MetodoPagamento> MetodoPagamentos { get; set; }
         public DbSet<Pedido> Pedidos { get; set; }
         public DbSet<PedidoProduto> PedidoProdutos { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            //--------------Endereco-----------------------
+            modelBuilder
+                .Entity<Endereco>()
+                .HasOne(p => p.Cliente)
+                .WithMany(c => c.Enderecos)
+                .HasForeignKey(p => p.ClientId);
+        }
+
     }
 }

@@ -2,6 +2,7 @@
 {
     public class Produto
     {
+        public int Id { get; set; }
         public int ProdutoId { get; set; }
         public string NomeProduto { get; set; }
         public decimal Preco { get; set; }

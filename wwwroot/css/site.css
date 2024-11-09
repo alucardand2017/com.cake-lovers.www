@@ -54,3 +54,23 @@ body {
     .carousel-control-next:hover {
         opacity: 1; /* Remover a transparência ao passar o mouse */
     }
+
+.image-opacity {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out; /* Controla a duração e suavidade da transição */
+}
+
+    /* Altere a opacidade ao passar o mouse */
+    .image-opacity:hover {
+        opacity: 0.5; /* Ajuste o nível de opacidade desejado */
+    }
+
+
+body {
+    background-image: url('/Images/background3.jpg');
+    background-size: cover; /* Ajusta a imagem para cobrir toda a tela */
+    background-repeat: no-repeat; /* Impede que a imagem se repita */
+    background-attachment: fixed; /* A imagem fica fixa ao rolar a página */
+    background-position: center; /* Centraliza a imagem */
+    background-color: rgba(0, 0, 0, 0.5);
+}

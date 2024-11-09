@@ -2,11 +2,11 @@
 {
     public class Cliente
     {
-        public int ClientId { get; set; }
-        public string NomeCompleto { get; set; }
-        public string Email { get; set; }
-        public string Telefone { get; set; }
-        public List<Pedido> Pedidos { get; set; }
-        public List<Endereco> Enderecos { get; set; }
+        public int Id { get; set; }
+        public string? NomeCompleto { get; set; }
+        public string? Email { get; set; }
+        public string? Telefone { get; set; }
+        public virtual List<Pedido>? Pedidos { get; set; }
+        public virtual List<Endereco>? Enderecos { get; set; }
     }
 }

@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/com.cake_lovers.www.styles.css" asp-append-version="true" />
-    @*    <link rel="stylesheet" href="~/css/fontawesome/css/all.min.css" />*@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
@@ -15,7 +14,7 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/">
-                    <img src="~/images/logo.jpg" alt="Logo da Loja" style="height: 40px;">
+                    <img src="~/images/logo2.jpg" alt="Logo da Loja" style="height: 35px;">
                     <span>Cake-lovers</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -24,28 +23,8 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Cup Cakes
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Produto" asp-action="Index">Mais Vendidos</a></li>
-                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Produto" asp-action="Index">Restrições</a></li>
-                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Produto" asp-action="Index">Combos</a></li>
-                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Produto" asp-action="Index">Premium</a></li>
-                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Produto" asp-action="Index">Temáticos</a></li>
-                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Produto" asp-action="Index">Promoções</a></li>
-
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Gestão
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Produto" asp-action="Index">Produtos</a></li>
-                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Cliente" asp-action="Index">Clientes</a></li>
-                            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Carrinho" asp-action="GetAllProdutos">CupCakes</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contato">Contato</a>
@@ -56,7 +35,27 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Política de Privacidade</a>
                         </li>
+                         <li class="nav-item dropdown">
+                           <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Gestão
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Produto" asp-action="Index">Produtos</a></li>
+                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Cliente" asp-action="Index">Clientes</a></li>
+                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Pedido" asp-action="Index">Pedidos</a></li>
 
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="justify-content-end">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="navbar-right">
+                            <a asp-controller="Carrinho" asp-action="Index" class="cart-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="cart-count small badge bg-primary">7</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

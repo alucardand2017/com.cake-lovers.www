@@ -1,5 +1,5 @@
 ﻿using com.cake_lovers.www.Data;
-using Microsoft.EntityFrameworkCore;
+using com.cake_lovers.www.Models;
 
 namespace com.cake_lovers.www.Services
 {
@@ -10,6 +10,11 @@ namespace com.cake_lovers.www.Services
         public ProdutoService(CakeLoversDbContext context)
         {
             _context = context;
+        }
+
+        public List<Produto> GetAllProdutos()
+        {
+          return _context.Produtos.ToList();
         }
     }
 }

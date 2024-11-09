@@ -20,7 +20,6 @@
   <ItemGroup>
     <Folder Include="Documentação\" />
     <Folder Include="wwwroot\Images\maisvendidos\" />
-    <Folder Include="wwwroot\Images\ultimos\" />
     <Folder Include="wwwroot\Images\premium\" />
   </ItemGroup>
 

@@ -8,6 +8,6 @@
         public string Estado { get; set; }
         public string CEP { get; set; }
         public int ClientId { get; set; }
-        public Cliente Cliente { get; set; }
+        public virtual Cliente Cliente { get; set; }
     }
 }
