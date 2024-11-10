@@ -46,6 +46,12 @@ namespace com.cake_lovers.www.Controllers
             return View();
         }
 
+        public IActionResult MetodoPagamento()
+        {
+            var metodo = new MetodoPagamento();
+            return View(metodo);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

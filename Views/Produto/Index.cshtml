@@ -22,7 +22,7 @@
             </div>
             <div class="modal-body">
                 <form asp-action="CreateCadastroFamiliar">
-                    <div class="row">
+                    <div class="row mb-2">
                         <div class="mt-3 col-sm-3">
                             <label class="form-label" asp-for="NovoProduto.NomeProduto"></label>
                             <input class="form-control" asp-for="NovoProduto.NomeProduto" />
@@ -37,7 +37,7 @@
                         </div>
 
                     </div>
-                    <div class="row">
+                    <div class="row mb-2">
                         <div class="mt-3 col-sm-6">
                             <label class="form-label" asp-for="NovoProduto.CaminhoFoto"></label>
                             <input class="form-control" asp-for="NovoProduto.Estoque" />
@@ -46,6 +46,19 @@
                             <label class="form-label" asp-for="NovoProduto.Estoque"></label>
                             <input class="form-control" asp-for="NovoProduto.Estoque" />
                         </div>
+                        <div class="mt-3 col-sm-3">
+                            <label class="form-label" asp-for="NovoProduto.Cagegoria">Cagegoria</label>
+                            <select class="form-select">
+                                <option value="Promocao">Promoção</option>
+                                <option value="Tematico">Temáticos</option>
+                                <option value="MaisVendido">MaisVendidos</option>
+                                <option value="Saudavel">Saudável</option>
+                                <option value="Restricao">Restrição</option>
+                                <option value="Premium">Premium</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button class="btn btn-success" type="submit"><i class="fa fa-check-circle"></i> Salvar Familiar</button>

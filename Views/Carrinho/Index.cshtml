@@ -4,10 +4,10 @@
     ViewData["Title"] = "Comprar";
 }
 
-<div class="text-center">
-    <img src="~/images/logo.jpg" alt="Logo da Loja" style="height: 150px;">
-    <h1 class="display-4">Cake-Lovers</h1>
-    <h3>Um mundo com cupcakes é um mundo melhor!</h3>
+<div class="figure-container text-center">
+    <img src="~/images/logo2.jpg" class="img-fluid image-opacity" alt="Logo da Loja" style="height: 120px;">
+    <h2 class="display-5">Cake-Lovers</h2>
+
 </div>
 <div class="container mt-5">
     <h2 class="mb-4">Carrinho de Compras</h2>
@@ -69,7 +69,7 @@
                 <h5>Total Geral:</h5>
                 <h5>R$ 200,00</h5>
             </div>
-            <button class="btn btn-primary w-100 mt-3">Finalizar Compra</button>
+            <a class="btn btn-primary w-100 mt-3" asp-action="MetodoPagamento" asp-controller="Carrinho">Ir para Pagamento</a>
         </div>
     </div>
 </div>

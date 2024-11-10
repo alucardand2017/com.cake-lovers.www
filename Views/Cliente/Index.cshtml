@@ -22,7 +22,7 @@
             </div>
             <div class="modal-body">
                 <form asp-action="CreateCadastroFamiliar">
-                    <div class="row">
+                    <div class="row mb-2">
                         <div class="mt-3 col-sm-3">
                             <label class="form-label" asp-for="NovoCliente.NomeCompleto"></label>
                             <input class="form-control" asp-for="NovoCliente.NomeCompleto" />
@@ -37,7 +37,7 @@
                         </div>
 
                     </div>
-                    <div class="row">
+                    <div class="row mb-2">
                         <div class="mt-3 col-sm-3">
                             <label class="form-label" asp-for="NovoEndereco.CEP"></label>
                             <input class="form-control" asp-for="NovoEndereco.CEP" />
@@ -55,7 +55,7 @@
                             <input class="form-control" asp-for="NovoEndereco.Estado" />
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mb-2">
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button class="btn btn-success" type="submit"><i class="fa fa-check-circle"></i> Salvar Familiar</button>

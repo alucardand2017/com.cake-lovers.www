@@ -9,5 +9,7 @@
         public int Estoque { get; set; }
         //public List<PedidoProduto> PedidoProdutos { get; set; }
         public string CaminhoFoto { get; set; }
+        public string Cagegoria { get; set; }
+
     }
 }
