@@ -20,6 +20,8 @@ builder.Services.AddDbContext<CakeLoversDbContext>(opt
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ProdutoService, ProdutoService>();
+builder.Services.AddScoped<ContatoService, ContatoService>();
+
 var app = builder.Build();
 
 

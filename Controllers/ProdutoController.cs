@@ -102,21 +102,6 @@ namespace com.cake_lovers.www.Controllers
                 throw new ArgumentException($"Error = {e.Message}");
             }
         }
-
-        [HttpGet]
-        public IActionResult UpdateProdutoPorId(int? id)
-        {
-            throw new ArgumentException();
-        }
-
-        [HttpPost]
-        public IActionResult UpdateProduto(Produto produto)
-        {
-            _produtoService.UpdateProduto(produto);
-            return RedirectToAction(nameof(Index));
-        }
-
-
         [HttpGet]
         public IActionResult DeletarProduto(int? id)
         {
@@ -134,6 +119,21 @@ namespace com.cake_lovers.www.Controllers
                 throw new ArgumentException($"Error = {e.Message}");
             }
         }
+
+        [HttpGet]
+        public IActionResult UpdateProdutoPorId(int? id)
+        {
+            throw new ArgumentException();
+        }
+
+        [HttpPost]
+        public IActionResult UpdateProduto(Produto produto)
+        {
+            _produtoService.UpdateProduto(produto);
+            return RedirectToAction(nameof(Index));
+        }
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

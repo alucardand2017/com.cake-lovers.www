@@ -10,5 +10,8 @@ namespace com.cake_lovers.www.Models.ModelView
         public bool Enviado { get; set; }
         public DateTime? Date { get; set; }
 
+        public List<Contato> Contatos { get; set; } = new List<Contato>();
+
+
     }
 }

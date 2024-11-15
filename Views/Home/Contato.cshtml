@@ -7,7 +7,7 @@
 <h1>@ViewData["Title"]</h1>
 <p>Entre em contato conosco preenchendo o formulário abaixo:</p>
 
-<form method="post">
+<form method="post" asp-action="AdicionaMensagemContato" asp-controller="Contato">
     <input type="hidden" class="form-control" id="Date" name="Date" asp-for="Date" value="@DateTime.Now" />
     <div class="form-group">
         <label for="Nome">Nome</label>
