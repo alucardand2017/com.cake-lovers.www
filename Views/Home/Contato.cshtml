@@ -6,7 +6,12 @@
 
 <h1>@ViewData["Title"]</h1>
 <p>Entre em contato conosco preenchendo o formulário abaixo:</p>
-
+@if (Model.Enviado)
+{
+    <div class="alert alert-success mt-3">
+        Obrigado pelo seu contato! Entraremos em contato em breve.
+    </div>
+}
 <form method="post" asp-action="AdicionaMensagemContato" asp-controller="Contato">
     <input type="hidden" class="form-control" id="Date" name="Date" asp-for="Date" value="@DateTime.Now" />
     <div class="form-group">
@@ -32,13 +37,6 @@
 
     </div>
 </form>
-
-@if (Model.Enviado)
-{
-        <div class="alert alert-success mt-3">
-            Obrigado pelo seu contato! Entraremos em contato em breve.
-        </div>
-}
 
 <hr />
 <div class="d-flex justify-content-around">

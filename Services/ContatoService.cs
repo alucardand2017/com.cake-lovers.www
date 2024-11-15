@@ -12,7 +12,7 @@ namespace com.cake_lovers.www.Services
         {
             _context = context;
         }
-        public void AddContato(ContatoModel model)
+        public int AddContato(ContatoModel model)
         {
             if (model == null)
             {
@@ -26,7 +26,7 @@ namespace com.cake_lovers.www.Services
                 Email= model.Email,
             };
             _context.Contatos.Add(contato);
-            _context.SaveChangesAsync();
+            return _context.SaveChanges();
         }
         public List<Contato> GetAllContatos()
         {

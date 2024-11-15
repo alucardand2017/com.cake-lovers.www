@@ -33,8 +33,14 @@ namespace com.cake_lovers.www.Controllers
         {
             try
             {
-                _contatoService.AddContato(contato);
-                return RedirectToAction(nameof(Index));
+                var resultado = _contatoService.AddContato(contato);
+                if(resultado == 0)
+                {
+                    return View("Contato","Home");
+
+                }
+                ViewBag.Data = true; ;
+                return RedirectToAction("Contato","Home", new { idTemp = 1 });
             }
             catch (Exception e)
             {

@@ -27,15 +27,26 @@ namespace com.cake_lovers.www.Controllers
         {
             return View();
         }
-        public IActionResult Contato()
+        [HttpGet]
+        public IActionResult Contato(int idTemp)
         {
+            var data = ViewBag.Data; // Recebe o valor do primeiro controlador
+
             var contato = new ContatoModel()
             {
                 Email = string.Empty,
                 Enviado = false,
-                Nome= string.Empty,
-                Mensagem=string.Empty, 
+                Nome = string.Empty,
+                Mensagem = string.Empty,
             };
+           if (idTemp > 0)
+            {
+                contato.Enviado = true;
+            }
+           else
+            {
+                contato.Enviado = false;
+            }
             return View(contato);
         }
 
