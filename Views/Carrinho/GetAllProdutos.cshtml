@@ -2,41 +2,41 @@
 
 @{
     ViewData["Title"] = "Comprar";
+    var filtro = TempData["Filtro"] as string;
 }
-
+<p>@TempData["Filtro"]</p>
 <div class="text-center">
-      <div class="figure-container">
+    <div class="figure-container">
         <img src="~/images/logo2.jpg" class="img-fluid image-opacity" alt="Logo da Loja" style="height: 120px;">
     </div>
     <h2 class="display-5">Cake-Lovers</h2>
 </div>
 
 
-<div class="col-3">
+@*<div class="col-3">
     <label>Filtro</label>
-    <select>
-        <option value="Promocao">Todos</option>
-        <option value="Promocao">Promoção</option>
-        <option value="Tematico">Temáticos</option>
-        <option value="MaisVendido">MaisVendidos</option>
-        <option value="Saudavel">Saudável</option>
-        <option value="Restricao">Restrição</option>
-        <option value="Premium">Premium</option>
+    <select class="form-select">
+        <option value="">Todos</option>
+        <option value="promocao" class="text-primary">Promoção</option>
+        <option class="@(filtro == "tematico" ? "selected":"")" value="tematico">Temáticos</option>
+        <option class="@(filtro == "maisvendidos" ? "selected":"")" value="maisvendido">Mais Vendidos</option>
+        <option class="@(filtro == "combo" ? "selected":"")" value="combo">Combos</option>
+        <option class="@(filtro == "restrito" ? "selected":"")" value="restrito">Restrição</option>
+        <option class="@(filtro == "premium" ? "selected":"")" value="premium">Premium</option>
     </select>
-</div>
+</div>*@
 
 <div class="row mt-5 gx-5 row-cols-1 row-cols-md-3 g-4">
 
 
-    @for (int i = 1; i <= 12; i++)
+    @for (int i = 0; i < Model.Produtos.Count; i++)
     {
-        string foto = ((uint)i) + ".jpg";
         <div class="col gy-5">
             <div class="card h-100">
-                <img src="~/Images/cupcakes/@foto" class="d-block w-100" alt="...">
+                <img src="@Model.Produtos[i].ImagePath" class="d-block w-100" alt="..." height="300">
                 <div class="card-body">
                     <h5 class="card-title">Mais vendidos</h5>
-                    <p class="card-text fs-5"></p>
+                    <p class="card-text fs-5">@Model.Produtos[i].NomeProduto</p>
                 </div>
                 <div class="card-footer justify-content-center">
                     <button class="btn btn-danger">Comprar</button>
@@ -44,5 +44,5 @@
             </div>
         </div>
     }
-   
+
 </div>

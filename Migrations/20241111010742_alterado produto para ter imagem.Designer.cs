@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using com.cake_lovers.www.Data;
 
@@ -10,9 +11,10 @@ using com.cake_lovers.www.Data;
 namespace com.cake_lovers.www.Migrations
 {
     [DbContext(typeof(CakeLoversDbContext))]
-    partial class CakeLoversDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241111010742_alterado produto para ter imagem")]
+    partial class alteradoprodutoparaterimagem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,7 +38,7 @@ namespace com.cake_lovers.www.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clientes", (string)null);
+                    b.ToTable("Clientes");
                 });
 
             modelBuilder.Entity("com.cake_lovers.www.Models.Contato", b =>
@@ -59,7 +61,7 @@ namespace com.cake_lovers.www.Migrations
 
                     b.HasKey("ContatoId");
 
-                    b.ToTable("Contatos", (string)null);
+                    b.ToTable("Contatos");
                 });
 
             modelBuilder.Entity("com.cake_lovers.www.Models.Endereco", b =>
@@ -91,7 +93,7 @@ namespace com.cake_lovers.www.Migrations
 
                     b.HasIndex("ClienteId");
 
-                    b.ToTable("Enderecos", (string)null);
+                    b.ToTable("Enderecos");
                 });
 
             modelBuilder.Entity("com.cake_lovers.www.Models.Imagem", b =>
@@ -119,7 +121,7 @@ namespace com.cake_lovers.www.Migrations
 
                     b.HasIndex("ProdutoId");
 
-                    b.ToTable("Imagens", (string)null);
+                    b.ToTable("Imagens");
                 });
 
             modelBuilder.Entity("com.cake_lovers.www.Models.MetodoPagamento", b =>
@@ -143,7 +145,7 @@ namespace com.cake_lovers.www.Migrations
 
                     b.HasIndex("ClienteID");
 
-                    b.ToTable("MetodoPagamentos", (string)null);
+                    b.ToTable("MetodoPagamentos");
                 });
 
             modelBuilder.Entity("com.cake_lovers.www.Models.Pedido", b =>
@@ -173,7 +175,7 @@ namespace com.cake_lovers.www.Migrations
 
                     b.HasIndex("MetodoPagamentoId");
 
-                    b.ToTable("Pedidos", (string)null);
+                    b.ToTable("Pedidos");
                 });
 
             modelBuilder.Entity("com.cake_lovers.www.Models.PedidoProduto", b =>
@@ -197,7 +199,7 @@ namespace com.cake_lovers.www.Migrations
 
                     b.HasIndex("ProdutoId");
 
-                    b.ToTable("PedidoProdutos", (string)null);
+                    b.ToTable("PedidoProdutos");
                 });
 
             modelBuilder.Entity("com.cake_lovers.www.Models.Produto", b =>
@@ -230,7 +232,7 @@ namespace com.cake_lovers.www.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Produtos", (string)null);
+                    b.ToTable("Produtos");
                 });
 
             modelBuilder.Entity("com.cake_lovers.www.Models.Endereco", b =>

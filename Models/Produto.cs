@@ -1,15 +1,18 @@
-﻿namespace com.cake_lovers.www.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.Reflection.Metadata;
+
+namespace com.cake_lovers.www.Models
 {
     public class Produto
     {
         public int Id { get; set; }
-        public int ProdutoId { get; set; }
         public string NomeProduto { get; set; }
+        public string Descricao { get; set; }
+        [Range(0.01, 1000000, ErrorMessage = "O preço deve ser positivo.")]
+        [DataType(DataType.Currency)]
         public decimal Preco { get; set; }
         public int Estoque { get; set; }
-        //public List<PedidoProduto> PedidoProdutos { get; set; }
-        public string CaminhoFoto { get; set; }
-        public string Cagegoria { get; set; }
-
+        public string Categoria { get; set; }
+        public string ImagePath { get; set; }
     }
 }

@@ -7,7 +7,7 @@
         public string Cidade { get; set; }
         public string Estado { get; set; }
         public string CEP { get; set; }
-        public int ClientId { get; set; }
+        public int ClienteId { get; set; }
         public virtual Cliente Cliente { get; set; }
     }
 }

@@ -1,11 +1,17 @@
 using com.cake_lovers.www.Data;
 using com.cake_lovers.www.Services;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 ConfigurationManager configuration = builder.Configuration; // allows both to access and to set up the config
 var connectionString = builder.Configuration.GetConnectionString("CakeLoversDB");
+
+var cultureInfo = new CultureInfo("pt-BR");
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
 
 builder.Services.AddDbContext<CakeLoversDbContext>(opt
     => opt.UseLazyLoadingProxies().UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));

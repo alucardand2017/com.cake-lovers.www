@@ -17,7 +17,7 @@ namespace com.cake_lovers.www.Controllers
             _produtoService = produtoService;
         }
 
-        public IActionResult Index(string? termo)
+        public IActionResult Index()
         {
             var view = new CarrinhoModel();
             return View(view);
@@ -25,6 +25,8 @@ namespace com.cake_lovers.www.Controllers
         [HttpGet]
         public IActionResult GetAllProdutos(string? termo)
         {
+            TempData["Filtro"] = termo;
+
             if(termo== null)
             {
                 var produtos = _produtoService.GetAllProdutos();
@@ -36,10 +38,13 @@ namespace com.cake_lovers.www.Controllers
             }
             else
             {
-
+                var produtos = _produtoService.GetAllProdutosCategoria( termo);
+                CarrinhoModel carrinho = new()
+                {
+                    Produtos = produtos,
+                };
+                return View(carrinho);
             }
-            var view = new CarrinhoModel();
-            return View(view);
         }
         public IActionResult GetByIdProdutos(int id)
         {

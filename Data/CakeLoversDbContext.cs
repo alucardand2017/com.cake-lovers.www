@@ -9,6 +9,7 @@ namespace com.cake_lovers.www.Data
            : base(options)
         {
         }
+        public DbSet<Imagem> Imagens { get; set; }
         public DbSet<Contato> Contatos { get; set; }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
@@ -27,7 +28,8 @@ namespace com.cake_lovers.www.Data
                 .Entity<Endereco>()
                 .HasOne(p => p.Cliente)
                 .WithMany(c => c.Enderecos)
-                .HasForeignKey(p => p.ClientId);
+                .HasForeignKey(p => p.ClienteId);
+
         }
 
     }
