@@ -12,7 +12,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3 text-white">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/">
                     <img src="~/images/logo2.jpg" alt="Logo da Loja" style="height: 35px;">
@@ -25,26 +25,26 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Carrinho" asp-action="GetAllProdutos">CupCakes</a>
+                            <a class="nav-link" asp-area="" asp-controller="Carrinho" asp-action="GetAllProdutos">CupCakes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contato">Contato</a>
+                            <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Contato">Contato</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="SobreNos">Sobre Nós</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="SobreNos">Sobre Nós</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Política de Privacidade</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Política de Privacidade</a>
                         </li>
                          <li class="nav-item dropdown">
-                           <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Gestão
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Produto" asp-action="Index">Produtos</a></li>
-                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Cliente" asp-action="Index">Clientes</a></li>
-                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Pedido" asp-action="Index">Pedidos</a></li>
-                                <li><a class="nav-link text-dark" asp-area="" asp-controller="Contato" asp-action="Index">Contatos</a></li>
+                            <ul class="dropdown-menu bg-dark text-white " aria-labelledby="navbarDropdown">
+                                <li><a class="nav-link " asp-area="" asp-controller="Produto" asp-action="Index">Produtos</a></li>
+                                <li><a class="nav-link " asp-area="" asp-controller="Cliente" asp-action="Index">Clientes</a></li>
+                                <li><a class="nav-link " asp-area="" asp-controller="Pedido" asp-action="Index">Pedidos</a></li>
+                                <li><a class="nav-link " asp-area="" asp-controller="Contato" asp-action="Index">Contatos</a></li>
 
 
                             </ul>
