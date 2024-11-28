@@ -2,9 +2,8 @@
 {
     public class CarrinhoModel
     {
-        public List<Produto>? Produtos { get; set; }
-        //public Pedido Pedido { get; set; }
-        //public Cliente Cliente { get; set; }
-        //public Endereco Endereco { get; set; }
+        public IEnumerable<Produto> Produtos { get; set; }  = Enumerable.Empty<Produto>();
+        public PagingInfo PagingInfo { get; set; } = new();
+        public string? CurrentCategory { get; set; }
     }
 }

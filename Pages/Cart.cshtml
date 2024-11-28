@@ -3,38 +3,62 @@
 @model com.cake_lovers.www.Pages.CartModel
 @{
 }
-<h2>Your cart</h2>
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>Quantity</th>
-            <th>Item</th>
-            <th class="text-right">Price</th>
-            <th class="text-right">Subtotal</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var line in Model?.Cart?.Lines ?? Enumerable.Empty<CartLine>())
-        {
+
+<div class="figure-container text-center">
+    <img src="~/images/logo2.jpg" class="img-fluid image-opacity" alt="Logo da Loja" style="height: 120px;">
+    <h2 class="display-5">Cake-Lovers</h2>
+
+</div>
+
+<div class="container mt-5">
+    <h2 class="mb-4">Carrinho de Compras</h2>
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col">Produto</th>
+                    <th scope="col">Preço</th>
+                    <th scope="col">Quantidade</th>
+                    <th scope="col">Subtotal</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var line in Model?.Cart?.Lines ?? Enumerable.Empty<CartLine>())
+                {
+                    <tr>
+                        <td class="text-left">@line.Produto.NomeProduto</td>
+                        <td class="text-right">@line.Produto.Preco.ToString("c")</td>
+                        <td class="text-center">@line.Quantidade</td>
+                        <td class="text-right">
+                            @((line.Quantidade * line.Produto.Preco).ToString("c"))
+                        </td>
+                        <td>
+                            <button class="btn btn-danger btn-sm">Remover</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+             <tfoot>
             <tr>
-                <td class="text-center">@line.Quantidade</td>
-                <td class="text-left">@line.Produto.NomeProduto</td>
-                <td class="text-right">@line.Produto.Preco.ToString("c")</td>
+                <td colspan="3" class="text-right">Total:</td>
                 <td class="text-right">
-                    @((line.Quantidade * line.Produto.Preco).ToString("c"))
+                    @Model?.Cart?.ComputeTotalValue().ToString("c")
                 </td>
             </tr>
-        }
-    </tbody>
-    <tfoot>
-        <tr>
-            <td colspan="3" class="text-right">Total:</td>
-            <td class="text-right">
-                @Model?.Cart?.ComputeTotalValue().ToString("c")
-            </td>
-        </tr>
-    </tfoot>
-</table>
-<div class="text-center">
-    <a class="btn btn-primary" href="@Model?.ReturnUrl">Continue shopping</a>
-</div>
+        </tfoot>
+        </table>
+    </div>
+
+    <!-- Total e Botões -->
+    <div class="row mt-5 mb-2 justify-content-end">
+        <div class="col-2">
+            <a class="btn btn-primary" href="@Model?.ReturnUrl">Continue shopping</a>
+        </div>
+        <div class="col-2">
+            <a class="btn btn-secondary" asp-action="MetodoPagamento" asp-controller="Carrinho"> Ir para Pagamento </a>
+        </div>
+    </div>
+
+
+   

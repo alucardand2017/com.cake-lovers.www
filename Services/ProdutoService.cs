@@ -28,12 +28,13 @@ namespace com.cake_lovers.www.Services
         }
         public List<Produto> GetAllProdutosCategoria(string termo)
         {
-            return _context.Produtos.Where(p => p.Categoria == termo).ToList();
+            return _context.Produtos.Where(p => p.Categoria == termo || p.Categoria == null).ToList();
         }
         public Produto GetAllProdutosForId(int? id)
         {
             if (id.HasValue)
             {
+
                 return _context.Produtos.FirstOrDefault(p => p.Id == id);
             }
             throw new ArgumentNullException("Não foi possível encontrar o produto solicitado");

@@ -23,9 +23,16 @@ namespace com.cake_lovers.www.Pages
             ReturnUrl = returnUrl ?? "/";
             Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
         }
-        public IActionResult OnPost(long productId, string returnUrl)
+        public IActionResult OnPost(long Id, string returnUrl)
         {
-            var produto = repository.Produtos.FirstOrDefault(p => p.Id == productId);
+            if(  Id == 0)
+            {
+                Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
+                HttpContext.Session.SetJson("cart", Cart);
+                return RedirectToPage(new { returnUrl = returnUrl });
+
+            }
+            var produto = repository.Produtos.FirstOrDefault(p => p.Id == Id);
             if (produto != null)
             {
                 Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();

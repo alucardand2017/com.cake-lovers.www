@@ -1,4 +1,5 @@
 using com.cake_lovers.www.Data;
+using com.cake_lovers.www.Models;
 using com.cake_lovers.www.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
@@ -37,17 +38,13 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseSession();
-
 app.UseRouting();
-
 app.UseAuthorization();
-
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
+app.MapControllerRoute("Categoria", "{category}",
+new { Controller = "Carrinho", action = "GetAllProdutos", productPage = 1 });
 app.MapRazorPages();
-
-
-
+SeedData.EnsurePopulated(app);
 app.Run();

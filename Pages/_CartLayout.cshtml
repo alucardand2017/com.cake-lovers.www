@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using com.cake_lovers.www.Intrastructure;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -10,9 +11,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <div class="bg-dark text-white p-2">
-        <span class="navbar-brand ml-2">SPORTS STORE</span>
-    </div>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3 text-white">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">
+                    <img src="~/images/logo2.jpg" alt="Logo da Loja" style="height: 35px;">
+                    <span>Cake-lovers</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="justify-content-end">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="navbar-right">
+                            <a asp-page="/Cart" asp-route-Id="0" asp-route-returnUrl="@ViewContext.HttpContext.Request.PathAndQuery()" class="cart-icon">
+                                <i class="fas fa-shopping-cart text-white">
+                                </i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
     <div class="m-1 p-1">
         @RenderBody()
     </div>

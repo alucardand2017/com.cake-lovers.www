@@ -7,10 +7,10 @@ using com.cake_lovers.www.Infrastructure;
 
 namespace SportsStore.Pages
 {
-    public class CartModel : PageModel
+    public class CartModel_old : PageModel
     {
         private CakeLoversDbContext repository;
-        public CartModel(CakeLoversDbContext repo)
+        public CartModel_old(CakeLoversDbContext repo)
         {
             repository = repo;
         }

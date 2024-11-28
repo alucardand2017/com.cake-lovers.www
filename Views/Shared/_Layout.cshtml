@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using com.cake_lovers.www.Intrastructure;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -36,8 +37,8 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Política de Privacidade</a>
                         </li>
-                         <li class="nav-item dropdown">
-                           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Gestão
                             </a>
                             <ul class="dropdown-menu bg-dark text-white " aria-labelledby="navbarDropdown">
@@ -54,9 +55,9 @@
                 <div class="justify-content-end">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="navbar-right">
-                            <a asp-controller="Carrinho" asp-action="Index" class="cart-icon">
-                                <i class="fas fa-shopping-cart"></i>
-                                <span class="cart-count small badge bg-primary">7</span>
+                            <a asp-page="/Cart" asp-route-Id="0" asp-route-returnUrl="@ViewContext.HttpContext.Request.PathAndQuery()" class="cart-icon">
+                                <i class="fas fa-shopping-cart text-white">
+                                </i>
                             </a>
                         </li>
                     </ul>
@@ -64,6 +65,11 @@
             </div>
         </nav>
     </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            <vc:navigation-menu />
+        </main>
+    </div>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()

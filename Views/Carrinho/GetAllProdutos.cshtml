@@ -12,37 +12,21 @@
     <h2 class="display-5">Cake-Lovers</h2>
 </div>
 
-
-@*<div class="col-3">
-    <label>Filtro</label>
-    <select class="form-select">
-        <option value="">Todos</option>
-        <option value="promocao" class="text-primary">Promoção</option>
-        <option class="@(filtro == "tematico" ? "selected":"")" value="tematico">Temáticos</option>
-        <option class="@(filtro == "maisvendidos" ? "selected":"")" value="maisvendido">Mais Vendidos</option>
-        <option class="@(filtro == "combo" ? "selected":"")" value="combo">Combos</option>
-        <option class="@(filtro == "restrito" ? "selected":"")" value="restrito">Restrição</option>
-        <option class="@(filtro == "premium" ? "selected":"")" value="premium">Premium</option>
-    </select>
-</div>*@
-
 <div class="row mt-5 gx-5 row-cols-1 row-cols-md-3 g-4">
 
-
-    @for (int i = 0; i < Model.Produtos.Count; i++)
+    @foreach (var p in Model?.Produtos ?? Enumerable.Empty<Produto>())
     {
         <div class="col gy-5">
             <div class="card h-100">
-                <img src="@Model.Produtos[i].ImagePath" class="d-block w-100" alt="..." height="300">
-                <div class="card-body">
-                    <h5 class="card-title">Mais vendidos</h5>
-                    <p class="card-text fs-5">@Model.Produtos[i].NomeProduto</p>
-                </div>
-                <div class="card-footer justify-content-center">
-                    <button class="btn btn-danger">Comprar</button>
-                </div>
+                <img src="@p.ImagePath" class="d-block w-100" alt="..." height="300">
+                     <partial name="ProductSummary" model="p" />
             </div>
         </div>
     }
-
 </div>
+
+ <div page-model="@Model?.PagingInfo" page-action="Index" page-classes-enabled="true"
+ page-class="btn" page-class-normal="btn-outline-dark"
+ page-class-selected="btn-primary" page-url-category="@Model?.CurrentCategory!"
+ class="btn-group pull-right m-1">
+ </div>
