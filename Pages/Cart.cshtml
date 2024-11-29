@@ -20,6 +20,8 @@
                     <th scope="col">Preço</th>
                     <th scope="col">Quantidade</th>
                     <th scope="col">Subtotal</th>
+                    <th scope="col"></th>
+
                     <th scope="col">Ações</th>
                 </tr>
             </thead>
@@ -33,20 +35,28 @@
                         <td class="text-right">
                             @((line.Quantidade * line.Produto.Preco).ToString("c"))
                         </td>
-                        <td>
-                            <button class="btn btn-danger btn-sm">Remover</button>
+                        <td class="text-center">
+                            <form asp-page-handler="Remove" method="post">
+                                <input type="hidden" name="Id"
+                                   value="@line.Produto.Id" />
+                                <input type="hidden" name="returnUrl"
+                                   value="@Model?.ReturnUrl" />
+                                <button type="submit" class="btn btn-sm btn-danger">
+                                    Remover
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 }
             </tbody>
-             <tfoot>
-            <tr>
-                <td colspan="3" class="text-right">Total:</td>
-                <td class="text-right">
-                    @Model?.Cart?.ComputeTotalValue().ToString("c")
-                </td>
-            </tr>
-        </tfoot>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="text-right">Total:</td>
+                    <td class="text-right">
+                        @Model?.Cart?.ComputeTotalValue().ToString("c")
+                    </td>
+                </tr>
+            </tfoot>
         </table>
     </div>
 
@@ -61,4 +71,4 @@
     </div>
 
 
-   
+

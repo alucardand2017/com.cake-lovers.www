@@ -4,7 +4,7 @@ namespace com.cake_lovers.www.Models
     public class Cart
     {
         public List<CartLine> Lines { get; set; } = new List<CartLine>();
-        public void AddItem(Produto produto, int quantidade)
+        public virtual void AddItem(Produto produto, int quantidade)
         {
             CartLine? line = Lines
             .Where(p => p.Produto.Id == produto.Id)
@@ -22,9 +22,9 @@ namespace com.cake_lovers.www.Models
                 line.Quantidade += quantidade;
             }
         }
-        public void RemoveLine(Produto produto) => Lines.RemoveAll(l => l.Produto.Id == produto.Id);
+        public virtual void RemoveLine(Produto produto) => Lines.RemoveAll(l => l.Produto.Id == produto.Id);
         public decimal ComputeTotalValue() => Lines.Sum(e => e.Produto.Preco * e.Quantidade);
-        public void Clear() => Lines.Clear();
+        public virtual void Clear() => Lines.Clear();
     }
     public class CartLine
     {
