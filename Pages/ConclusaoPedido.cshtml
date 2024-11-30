@@ -1,9 +1,17 @@
 ﻿@page
 
+
 <div class="text-center">
-    <h2>Obrigado e Parabéns!</h2>
-    <p>PEDIDO #@PedidoId CONCLUÍDO COM SUCESSO!</p>
-    <p>Iremos realizar a entrega o mais rápido possível!</p>
+    <div class="figure-container">
+        <img src="~/images/logo2.jpg" class="img-fluid image-opacity" alt="Logo da Loja" style="height: 120px;">
+    </div>
+    <h2 class="display-5">Cake-Lovers</h2>
+</div>
+
+<div class="text-center mt-5">
+    <h1 class="mb-5">Obrigado pela Preferência!</h1>
+    <h3 class="mb-2">O <strong class="text-danger">Pedido #@PedidoId</strong> está sendo processado com sucesso!</h3>
+    <h3 class="mb-5">Logo será informado a situação da sua compra. Parabéns!!</h3>
     <a class="btn btn-primary" asp-controller="Home">Retornar às Compras</a>
 </div>
 @functions {
