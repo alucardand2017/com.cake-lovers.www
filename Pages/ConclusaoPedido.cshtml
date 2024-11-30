@@ -1,0 +1,12 @@
+﻿@page
+
+<div class="text-center">
+    <h2>Obrigado e Parabéns!</h2>
+    <p>PEDIDO #@PedidoId CONCLUÍDO COM SUCESSO!</p>
+    <p>Iremos realizar a entrega o mais rápido possível!</p>
+    <a class="btn btn-primary" asp-controller="Home">Retornar às Compras</a>
+</div>
+@functions {
+    [BindProperty(SupportsGet = true)]
+    public string? PedidoId { get; set; }
+}

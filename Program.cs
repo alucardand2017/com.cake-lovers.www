@@ -24,11 +24,13 @@ builder.Services.AddControllersWithViews()
     {
         options.ViewLocationFormats.Add("/{0}.cshtml");
     });
-builder.Services.AddScoped<ProdutoService, ProdutoService>();
-builder.Services.AddScoped<ContatoService, ContatoService>();
 builder.Services.AddRazorPages();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
+
+builder.Services.AddScoped<ProdutoService, ProdutoService>();
+builder.Services.AddScoped<ContatoService, ContatoService>();
+builder.Services.AddScoped<IPedidoRepository, EFPedidoRepository>();
 builder.Services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 var app = builder.Build();

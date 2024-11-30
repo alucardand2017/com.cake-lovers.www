@@ -11,8 +11,8 @@ using com.cake_lovers.www.Data;
 namespace com.cake_lovers.www.Migrations
 {
     [DbContext(typeof(CakeLoversDbContext))]
-    [Migration("20241130033220_alteração no pedido")]
-    partial class alteraçãonopedido
+    [Migration("20241130133406_alterado Pedido")]
+    partial class alteradoPedido
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,24 +21,28 @@ namespace com.cake_lovers.www.Migrations
                 .HasAnnotation("ProductVersion", "6.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("com.cake_lovers.www.Models.Cliente", b =>
+            modelBuilder.Entity("com.cake_lovers.www.Models.CartLine", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CartLineID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Email")
-                        .HasColumnType("longtext");
+                    b.Property<int?>("PedidoId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("NomeCompleto")
-                        .HasColumnType("longtext");
+                    b.Property<int>("ProdutoId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Telefone")
-                        .HasColumnType("longtext");
+                    b.Property<int>("Quantidade")
+                        .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("CartLineID");
 
-                    b.ToTable("Clientes");
+                    b.HasIndex("PedidoId");
+
+                    b.HasIndex("ProdutoId");
+
+                    b.ToTable("CartLine");
                 });
 
             modelBuilder.Entity("com.cake_lovers.www.Models.Contato", b =>
@@ -62,33 +66,6 @@ namespace com.cake_lovers.www.Migrations
                     b.HasKey("ContatoId");
 
                     b.ToTable("Contatos");
-                });
-
-            modelBuilder.Entity("com.cake_lovers.www.Models.Endereco", b =>
-                {
-                    b.Property<int>("EnderecoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("CEP")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Cidade")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Estado")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Rua")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("EnderecoId");
-
-                    b.ToTable("Enderecos");
                 });
 
             modelBuilder.Entity("com.cake_lovers.www.Models.Imagem", b =>
@@ -119,33 +96,9 @@ namespace com.cake_lovers.www.Migrations
                     b.ToTable("Imagens");
                 });
 
-            modelBuilder.Entity("com.cake_lovers.www.Models.MetodoPagamento", b =>
-                {
-                    b.Property<int>("MetodoPagamentoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("ClienteID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Detalhes")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("TipoMetodo")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("MetodoPagamentoId");
-
-                    b.HasIndex("ClienteID");
-
-                    b.ToTable("MetodoPagamentos");
-                });
-
             modelBuilder.Entity("com.cake_lovers.www.Models.Pedido", b =>
                 {
-                    b.Property<int?>("PedidoId")
+                    b.Property<int>("PedidoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -169,6 +122,7 @@ namespace com.cake_lovers.www.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Estado")
@@ -178,10 +132,8 @@ namespace com.cake_lovers.www.Migrations
                     b.Property<bool>("GiftWrap")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<int?>("MetodoPagamentoId")
-                        .HasColumnType("int");
-
                     b.Property<string>("NomeCompleto")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Numero")
@@ -199,37 +151,12 @@ namespace com.cake_lovers.www.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("Telefone")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("PedidoId");
 
-                    b.HasIndex("MetodoPagamentoId");
-
                     b.ToTable("Pedidos");
-                });
-
-            modelBuilder.Entity("com.cake_lovers.www.Models.PedidoProduto", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("PedidoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProdutoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantidade")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PedidoId");
-
-                    b.HasIndex("ProdutoId");
-
-                    b.ToTable("PedidoProdutos");
                 });
 
             modelBuilder.Entity("com.cake_lovers.www.Models.Produto", b =>
@@ -265,6 +192,21 @@ namespace com.cake_lovers.www.Migrations
                     b.ToTable("Produtos");
                 });
 
+            modelBuilder.Entity("com.cake_lovers.www.Models.CartLine", b =>
+                {
+                    b.HasOne("com.cake_lovers.www.Models.Pedido", null)
+                        .WithMany("LinhaDeProdutos")
+                        .HasForeignKey("PedidoId");
+
+                    b.HasOne("com.cake_lovers.www.Models.Produto", "Produto")
+                        .WithMany()
+                        .HasForeignKey("ProdutoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Produto");
+                });
+
             modelBuilder.Entity("com.cake_lovers.www.Models.Imagem", b =>
                 {
                     b.HasOne("com.cake_lovers.www.Models.Produto", "Produto")
@@ -276,43 +218,9 @@ namespace com.cake_lovers.www.Migrations
                     b.Navigation("Produto");
                 });
 
-            modelBuilder.Entity("com.cake_lovers.www.Models.MetodoPagamento", b =>
-                {
-                    b.HasOne("com.cake_lovers.www.Models.Cliente", "Cliente")
-                        .WithMany()
-                        .HasForeignKey("ClienteID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cliente");
-                });
-
             modelBuilder.Entity("com.cake_lovers.www.Models.Pedido", b =>
                 {
-                    b.HasOne("com.cake_lovers.www.Models.MetodoPagamento", "MetodoPagamento")
-                        .WithMany()
-                        .HasForeignKey("MetodoPagamentoId");
-
-                    b.Navigation("MetodoPagamento");
-                });
-
-            modelBuilder.Entity("com.cake_lovers.www.Models.PedidoProduto", b =>
-                {
-                    b.HasOne("com.cake_lovers.www.Models.Pedido", "Pedido")
-                        .WithMany()
-                        .HasForeignKey("PedidoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("com.cake_lovers.www.Models.Produto", "Produto")
-                        .WithMany()
-                        .HasForeignKey("ProdutoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Pedido");
-
-                    b.Navigation("Produto");
+                    b.Navigation("LinhaDeProdutos");
                 });
 #pragma warning restore 612, 618
         }

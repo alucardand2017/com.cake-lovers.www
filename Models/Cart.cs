@@ -29,7 +29,7 @@ namespace com.cake_lovers.www.Models
     public class CartLine
     {
         public int CartLineID { get; set; }
-        public Produto Produto { get; set; } = new();
+        public virtual Produto Produto { get; set; } = new();
         public int Quantidade { get; set; }
     }
 }

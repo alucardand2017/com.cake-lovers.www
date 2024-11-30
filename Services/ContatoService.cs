@@ -32,7 +32,6 @@ namespace com.cake_lovers.www.Services
         {
             return _context.Contatos.ToList();
         }
-       
         public Contato GetContatoPorId(int? id)
         {
             if (id.HasValue)
@@ -41,7 +40,6 @@ namespace com.cake_lovers.www.Services
             }
             throw new ArgumentNullException("Não foi possível encontrar o contato solicitado");
         }
-      
         public void DeletarContatoPorId(int? id)
         {
             var contato = _context.Contatos.FirstOrDefault(predicate => predicate.ContatoId == id);
