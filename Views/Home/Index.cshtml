@@ -52,7 +52,7 @@
 <div class="row mt-5 gx-5 row-cols-1 row-cols-md-3 g-4">
     <div class="col gy-5">
             <div class="card h-100">
-                <a asp-action="GetAllProdutos" asp-route-termo="maisvendido" asp-controller="Carrinho">
+                <a asp-action="GetAllProdutos" asp-route-category="MaisVendido" asp-controller="Carrinho">
                     <img src="Images/cupcakes/1.jpg" class="card-img-top" alt="...">
                     <div class="card-header">
                     <h5 class="card-title">Mais vendidos</h5>
@@ -65,10 +65,10 @@
     </div>
     <div class="col gy-5">
             <div class="card h-100">
-            <a asp-action="GetAllProdutos" asp-route-termo="combo" asp-controller="Carrinho">
+            <a asp-action="GetAllProdutos" asp-route-category="Restricao" asp-controller="Carrinho">
                     <img src="Images/cupcakes/2.jpg" class="card-img-top" alt="...">
                     <div class="card-header">
-                    <h5 class="card-title">Combos</h5>
+                    <h5 class="card-title">Restricao</h5>
                     </div>
                 </a>
                 <div class="card-body">
@@ -78,7 +78,7 @@
     </div>
     <div class="col gy-5">
             <div class="card h-100">
-            <a asp-action="GetAllProdutos" asp-route-termo="premium" asp-controller="Carrinho">
+            <a asp-action="GetAllProdutos" asp-route-category="Premium" asp-controller="Carrinho">
                 <img src="Images/cupcakes/3.jpg" class="card-img-top" alt="...">
                 <div class="card-header">
                     <h5 class="card-title">Premium</h5>
@@ -91,7 +91,7 @@
     </div>
     <div class="col gy-5">
             <div class="card h-100">
-            <a asp-action="GetAllProdutos" asp-route-termo="restrito" asp-controller="Carrinho">
+            <a asp-action="GetAllProdutos" asp-route-category="Saudavel" asp-controller="Carrinho">
                 <img src="Images/cupcakes/8.jpg" class="card-img-top" alt="...">
                     <div class="card-header">
                         <h5 class="card-title">Restritos</h5>
@@ -104,7 +104,7 @@
     </div>
     <div class="col gy-5">
             <div class="card h-100">
-            <a asp-action="GetAllProdutos" asp-route-termo="tematico" asp-controller="Carrinho">
+            <a asp-action="GetAllProdutos" asp-route-category="Tematico" asp-controller="Carrinho">
                     <img src="Images/cupcakes/5.jpg" class="card-img-top" alt="...">
                     <div class="card-header">
                         <h5 class="card-title">Tematicos</h5>
@@ -117,7 +117,7 @@
     </div>
     <div class="col gy-5">
         <div class="card h-100">
-            <a asp-action="GetAllProdutos" asp-route-termo="promocao" asp-controller="Carrinho">
+            <a asp-action="GetAllProdutos" asp-route-category="Promocao" asp-controller="Carrinho">
                 <img src="Images/cupcakes/6.jpg" class="card-img-top" alt="...">
                 <div class="card-header">
                     <h5 class="card-title">Promoções</h5>

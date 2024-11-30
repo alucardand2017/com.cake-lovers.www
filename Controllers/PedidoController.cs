@@ -13,20 +13,8 @@ namespace com.cake_lovers.www.Controllers
         {
             _logger = logger;
         }
+        public ViewResult Checkout() => View(new Pedido());
 
-        public IActionResult Index(string? termo)
-        {
-            var view = new PedidoModel();
-            return View(view);
-        }
-        public IActionResult GetAllProdutos()
-        {
-            return View();
-        }
-        public IActionResult GetByIdProdutos(int id)
-        {
-            return View();
-        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

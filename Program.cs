@@ -19,7 +19,11 @@ builder.Services.AddDbContext<CakeLoversDbContext>(opt
 
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews()
+    .AddRazorOptions(options =>
+    {
+        options.ViewLocationFormats.Add("/{0}.cshtml");
+    });
 builder.Services.AddScoped<ProdutoService, ProdutoService>();
 builder.Services.AddScoped<ContatoService, ContatoService>();
 builder.Services.AddRazorPages();
@@ -45,8 +49,10 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-app.MapControllerRoute("Categoria", "{category}",
-new { Controller = "Carrinho", action = "GetAllProdutos", productPage = 1 });
+app.MapControllerRoute(
+    name: "category",
+    pattern: "{category}",
+    defaults: new { Controller = "Carrinho", action = "GetAllProdutos", productPage = 1 });
 app.MapRazorPages();
 SeedData.EnsurePopulated(app);
 app.Run();

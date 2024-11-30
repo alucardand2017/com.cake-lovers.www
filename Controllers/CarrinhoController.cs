@@ -1,4 +1,5 @@
-﻿using com.cake_lovers.www.Models;
+﻿using com.cake_lovers.www.Data;
+using com.cake_lovers.www.Models;
 using com.cake_lovers.www.Models.ModelView;
 using com.cake_lovers.www.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -8,13 +9,13 @@ namespace com.cake_lovers.www.Controllers
 {
     public class CarrinhoController : Controller
     {
-        private readonly ProdutoService _produtoService;
+        private readonly CakeLoversDbContext _context;
         private readonly ILogger<CarrinhoController> _logger;
 
-        public CarrinhoController(ILogger<CarrinhoController> logger, ProdutoService produtoService)
+        public CarrinhoController(ILogger<CarrinhoController> logger, CakeLoversDbContext produtoService)
         {
             _logger = logger;
-            _produtoService = produtoService;
+            _context = produtoService;
         }
 
         public IActionResult Index()
@@ -23,39 +24,52 @@ namespace com.cake_lovers.www.Controllers
             return View(view);
         }
         [HttpGet]
-        public IActionResult GetAllProdutos(string? category, int productPage = 1)
+        public ViewResult GetAllProdutos(string? category, int productPage = 1)
+        => View(new CarrinhoModel
         {
-            TempData["Filtro"] = category;
+            Produtos = _context.Produtos
+                    .Where(p => category == null || p.Categoria == category)
+                   .OrderBy(p => p.Id),
 
-            if(category == null)
+            PagingInfo = new PagingInfo
             {
-                var produtos = _produtoService.GetAllProdutos();
-                CarrinhoModel carrinho = new()
-                {
-                    Produtos = produtos,
-                };
-                return View(carrinho);
-            }
-            else
-            {
-                var produtos = _produtoService.GetAllProdutosCategoria(category);
-                PagingInfo pagina = new PagingInfo
-                {
-                    CurrentPage = productPage,
-                    ItemsPerPage = 100,
-                    TotalItems = category == null ? _produtoService
-                    .GetAllProdutos().Count() : _produtoService.GetAllProdutos()
-                    .Where(e => e.Categoria == category).Count()
-                };
-                CarrinhoModel carrinho = new()
-                {
-                    Produtos = produtos,
-                    CurrentCategory = category,
-                    PagingInfo= pagina
-                };
-                return View(carrinho);
-            }
-        }
+                CurrentPage = productPage,
+                TotalItems = category == null
+                        ? _context.Produtos.Count()
+                        : _context.Produtos.Where(e =>
+                            e.Categoria == category).Count()
+            },
+            CurrentCategory = category
+        });
+        //TempData["category"] = category;
+        //if(category == null)
+        //{
+        //    var produtos = _produtoService.GetAllProdutos();
+        //    CarrinhoModel carrinho = new()
+        //    {
+        //        Produtos = produtos,
+        //    };
+        //    return View(carrinho);
+        //}
+        //else
+        //{
+        //    var produtos = _produtoService.GetAllProdutosCategoria(category);
+        //    PagingInfo pagina = new PagingInfo
+        //    {
+        //        CurrentPage = productPage,
+        //        ItemsPerPage = 100,
+        //        TotalItems = category == null ? _produtoService
+        //        .GetAllProdutos().Count() : _produtoService.GetAllProdutos()
+        //        .Where(e => e.Categoria == category).Count()
+        //    };
+        //    CarrinhoModel carrinho = new()
+        //    {
+        //        Produtos = produtos,
+        //        CurrentCategory = category,
+        //        PagingInfo= pagina
+        //    };
+        //    return View(carrinho);
+        //}
         public IActionResult GetByIdProdutos(int id)
         {
             return View();

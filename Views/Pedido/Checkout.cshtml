@@ -1,0 +1,70 @@
+﻿@model Pedido
+
+<h2>Informações</h2>
+<p>Por gentileza, entre com as informações para entrega:!</p>
+
+<form asp-action="Checkout" method="post">
+    <h3>Entregar para:</h3>
+    <div class="form-group">
+        <label>Nome:</label><input asp-for="NomeCompleto" class="form-control" />
+    </div>
+    <h3>Endereço</h3>
+    <div class="row">
+        <div class="mt-3 col-sm-3">
+            <label class="form-label" asp-for="CEP"></label>
+            <input class="form-control" maxlenght="8" asp-for="CEP" id="CepEndereco" required />
+            <span asp-validation-for="CEP" class="text-danger"></span>
+        </div>
+        <div class="mt-3 col-sm-7">
+            <label class="form-label" asp-for="Rua"></label>
+            <input onfocus="EncontrarCep()" maxlenght="200" class="form-control" asp-for="Rua" id="RuaEndereco" required />
+            <span asp-validation-for="Rua" class="text-danger"></span>
+        </div>
+        <div class="mt-3 col-sm-2">
+            <label class="form-label" asp-for="Numero"></label>
+            <input class="form-control" maxlength="10" asp-for="Numero" id="NumeroEndereco" required />
+            <span asp-validation-for="Numero" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="mt-3 col-sm-6">
+            <label class="form-label" asp-for="Complemento"></label>
+            <input class="form-control" maxlength="30" asp-for="Complemento" id="ComplementoEndereco" />
+            <span asp-validation-for="Complemento" class="text-danger"></span>
+        </div>
+        <div class="mt-3 col-sm-6">
+            <label class="form-label" asp-for="Bairro"></label>
+            <input class="form-control" maxlength="100" asp-for="Bairro" id="BairroEndereco" required />
+            <span asp-validation-for="Bairro" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="mt-3 col-sm-4">
+            <label class="form-label" asp-for="Cidade"></label>
+            <input class="form-control" maxlength="100" asp-for="Cidade" id="CidadeEndereco" required />
+            <span asp-validation-for="Cidade" class="text-danger"></span>
+        </div>
+        <div class="mt-3 col-sm-2">
+            <label class="form-label" asp-for="Estado"></label>
+            <input class="form-control" maxlength="100" asp-for="Estado" id="EstadoEndereco" required />
+            <span asp-validation-for="Estado" class="text-danger"></span>
+        </div>
+        <div class="mt-3 col-sm-3">
+            <label class="form-label" asp-for="Email"></label>
+            <input class="form-control" type="email" maxlength="11" asp-for="Email" required />
+        </div>
+        <div class="mt-3 col-sm-3">
+            <label class="form-label" asp-for="Telefone"></label>
+            <input class="form-control" type="tel" maxlength="11" asp-for="Telefone" required />
+        </div>
+    </div>
+    <h3>Options</h3>
+    <div class="checkbox">
+        <label>
+            <input asp-for="GiftWrap" /> Gift wrap these items
+        </label>
+    </div>
+    <div class="text-center">
+        <input class="btn btn-primary" type="submit" value="Complete Order" />
+    </div>
+</form>

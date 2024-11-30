@@ -9,22 +9,31 @@ namespace com.cake_lovers.www.Pages
     public class CartModel : PageModel
     {
         private CakeLoversDbContext repository;
+        public Cart Cart { get; set; }
+        public string ReturnUrl { get; set; } = "/";
         public CartModel(CakeLoversDbContext repo, Cart cartService)
         {
             repository = repo;
             Cart = cartService;
         }
-        public Cart? Cart { get; set; }
-        public string ReturnUrl { get; set; } = "/";
         public void OnGet(string returnUrl)
         {
             ReturnUrl = returnUrl ?? "/";
             //Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
         }
-        public IActionResult OnPost(int Id, string returnUrl)
+        //public IActionResult OnPost(long Id, string returnUrl)
+        //{
+        //    var product = repository.Produtos
+        //    .FirstOrDefault(p => p.Id == Id);
+        //    if (product != null)
+        //    {
+        //        Cart.AddItem(product,1);
+        //    }
+        //    return RedirectToPage(new { returnUrl = returnUrl });
+        //}
+        public IActionResult OnPost(long Id, string returnUrl)
         {
-            var product = repository.Produtos
-            .FirstOrDefault(p => p.Id == Id);
+            var product = repository.Produtos.FirstOrDefault(p => p.Id == Id);
             if (product != null)
             {
                 Cart.AddItem(product, 1);

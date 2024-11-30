@@ -52,17 +52,20 @@
                         </li>
                     </ul>
                 </div>
-                <div class="justify-content-end">
-                    <vc:cart-summary />
-                    </ul>
+                <div id="categories" class="justify-content-end">
+                    @*<vc:cart-summary />*@
+                    <a asp-page="/Cart" asp-route-Id="0" asp-route-returnUrl="@ViewContext.HttpContext.Request.PathAndQuery()" class="cart-icon">
+                        <i class="fas fa-shopping-cart text-white">
+                        </i>
+                    </a>
                 </div>
             </div>
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
-            <vc:navigation-menu />
-        </main>
+        <div id="categories" class="pb-3">
+            <vc:Navigation-Menu />            
+        </div>
     </div>
     <div class="container">
         <main role="main" class="pb-3">
@@ -78,6 +81,7 @@
 
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/encontracep.js" asp-append-version="true"></script>
     <script src="~/js/all.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

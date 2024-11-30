@@ -20,8 +20,6 @@
                     <th scope="col">Preço</th>
                     <th scope="col">Quantidade</th>
                     <th scope="col">Subtotal</th>
-                    <th scope="col"></th>
-
                     <th scope="col">Ações</th>
                 </tr>
             </thead>
@@ -62,11 +60,11 @@
 
     <!-- Total e Botões -->
     <div class="row mt-5 mb-2 justify-content-end">
-        <div class="col-2">
+        <div class="col-2 m-1">
             <a class="btn btn-primary" href="@Model?.ReturnUrl">Continue shopping</a>
         </div>
-        <div class="col-2">
-            <a class="btn btn-secondary" asp-action="MetodoPagamento" asp-controller="Carrinho"> Ir para Pagamento </a>
+        <div class="col-1 m-1">
+            <a class="btn btn-primary" asp-action="Checkout" asp-controller="Pedido">Checkout</a>
         </div>
     </div>
 

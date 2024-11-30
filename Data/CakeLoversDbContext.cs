@@ -22,14 +22,6 @@ namespace com.cake_lovers.www.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            //--------------Endereco-----------------------
-            modelBuilder
-                .Entity<Endereco>()
-                .HasOne(p => p.Cliente)
-                .WithMany(c => c.Enderecos)
-                .HasForeignKey(p => p.ClienteId);
-
         }
 
     }

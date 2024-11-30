@@ -32,8 +32,7 @@ namespace SportsStore.Infrastructure
 
 
 
-        public override void Process(TagHelperContext context,
-                TagHelperOutput output)
+        public override void Process(TagHelperContext context,TagHelperOutput output)
         {
             if (ViewContext != null && PageModel != null)
             {

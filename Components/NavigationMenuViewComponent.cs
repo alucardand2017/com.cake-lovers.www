@@ -10,13 +10,13 @@ namespace com.cake_lovers.www.Components
         {
             repository = repo;
         }
-        public IViewComponentResult Invoke()
+        public async Task<IViewComponentResult> Invoke()
         {
-           ViewBag.SelectedCategory = RouteData?.Values["Categoria"];
+           ViewBag.SelectedCategory = RouteData?.Values["category"];
             return View(repository.Produtos
             .Select(x => x.Categoria)
             .Distinct()
-            .OrderBy(x => x).ToList());
+            .OrderBy(x => x));
         }
     }
 }
