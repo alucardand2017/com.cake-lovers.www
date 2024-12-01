@@ -1,0 +1,114 @@
+﻿@model Pedido
+
+@{
+    ViewData["Title"] = "Atualizar Pedido";
+}
+
+<h1>Atualizar Pedido #@Model.PedidoId</h1>
+
+<form asp-controller="Admin" asp-action="UpdatePedido" method="post" class="needs-validation" novalidate>
+    <input type="hidden" class="form-control" asp-for="PedidoId" value="@Model.PedidoId" />
+
+    <div class="mb-3">
+        <label asp-for="DataPedido" class="form-label"></label>
+        <input asp-for="DataPedido" class="form-control" type="date" />
+        <span asp-validation-for="DataPedido" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="SituacaoPagamento" class="form-label"></label>
+        <select asp-for="SituacaoPagamento" class="form-select">
+            <option value="">Selecione...</option>
+            <option value="Pago Dinheiro" selected="@Model.SituacaoPagamento == Pago Dinheiro">Pago Dinheiro</option>
+            <option value="Pago Cartao" selected="@Model.SituacaoPagamento == Pago Cartao">Pago Cartão</option>
+            <option value="Pago Pix" selected="@Model.SituacaoPagamento == Pago Pix">Pago Pix</option>
+            <option value="Nao Pago" selected="@Model.SituacaoPagamento ==  Nao Pago">Não Pago</option>
+        </select>
+        <span asp-validation-for="SituacaoPagamento" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="SituacaoEntrega" class="form-label"></label>
+        <select asp-for="SituacaoEntrega" class="form-select">
+            <option value="">Selecione...</option>
+            <option value="Entregue" selected="@Model.SituacaoEntrega == " Entregue"">Entregue</option>
+            <option value="Não Entregue" selected="@Model.SituacaoEntrega == " Não Entregue"">Não Entregue</option>
+        </select>
+        <span asp-validation-for="SituacaoEntrega" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="NomeCompleto" class="form-label"></label>
+        <input asp-for="NomeCompleto" class="form-control" />
+        <span asp-validation-for="NomeCompleto" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" type="email" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Telefone" class="form-label"></label>
+        <input asp-for="Telefone" class="form-control" type="tel" />
+        <span asp-validation-for="Telefone" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Complemento" class="form-label"></label>
+        <input asp-for="Complemento" class="form-control" />
+        <span asp-validation-for="Complemento" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Numero" class="form-label"></label>
+        <input asp-for="Numero" class="form-control" />
+        <span asp-validation-for="Numero" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Rua" class="form-label"></label>
+        <input asp-for="Rua" class="form-control" />
+        <span asp-validation-for="Rua" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Bairro" class="form-label"></label>
+        <input asp-for="Bairro" class="form-control" />
+        <span asp-validation-for="Bairro" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Cidade" class="form-label"></label>
+        <input asp-for="Cidade" class="form-control" />
+        <span asp-validation-for="Cidade" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Estado" class="form-label"></label>
+        <input asp-for="Estado" class="form-control" />
+        <span asp-validation-for="Estado" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CEP" class="form-label"></label>
+        <input asp-for="CEP" class="form-control" />
+        <span asp-validation-for="CEP" class="text-danger"></span>
+    </div>
+
+    <div class="form-check">
+        <input asp-for="GiftWrap" class="form-check-input" type="checkbox" />
+        <label asp-for="GiftWrap" class="form-check-label"></label>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Atualizar</button>
+    <a asp-controller="Admin" asp-action="GetAllPedidos" class="btn btn-secondary mt-3">Cancelar</a>
+</form>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+       }

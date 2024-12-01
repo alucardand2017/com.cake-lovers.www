@@ -6,7 +6,7 @@ namespace com.cake_lovers.www.Models
 {
     public class Pedido
     {
-        [BindNever]
+        [Key]
         [DisplayName("#")]
 
         public int PedidoId { get; set; }

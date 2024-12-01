@@ -45,8 +45,9 @@
                             <td class="col text-center">@(Model.Pedidos[i].SituacaoPagamento != null ? Model.Pedidos[i].SituacaoPagamento : "Não informado")</td>
                             <td class="col text-center">@(Model.Pedidos[i].SituacaoEntrega != null ? Model.Pedidos[i].SituacaoEntrega : "Não informado")</td>
                             <td class="col text-center align-middle">
-                                <a class="btn btn-sm btn-warning" asp-action="VisualizaPedido" asp-route-id="@Model.Pedidos[i].PedidoId"><i class="fa-solid fa-magnifying-glass"></i></a>
-                                <a class="btn btn-sm btn-danger" asp-action="DeletaPedido" asp-route-id="@Model.Pedidos[i].PedidoId"><i class="fa fa-edit"></i></a>
+                                <a class="btn btn-sm btn-primary" asp-action="VisualizaPedido" asp-route-id="@Model.Pedidos[i].PedidoId"><i class="fa-solid fa-magnifying-glass"></i></a>
+                                <a class="btn btn-sm btn-warning" asp-controller="Admin" asp-action="UpdatePedido" asp-route-id="@Model.Pedidos[i].PedidoId"><i class="fa fa-edit"></i></a>
+                                <a class="btn btn-sm btn-danger" asp-action="DeletaPedido" asp-route-id="@Model.Pedidos[i].PedidoId"><i class="fa fa-trash"></i></a>
 
                             </td>
                         </tr>

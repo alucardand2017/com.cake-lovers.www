@@ -196,16 +196,17 @@ namespace com.cake_lovers.www.Controllers
         }
 
         [HttpGet]
-        public IActionResult UpdateProdutoPorId(int? id)
+        public IActionResult UpdatePedido(int id)
         {
-            throw new ArgumentException();
+            var pedido = _adminService.GetPedidoPorId(id);
+            return View(pedido);
         }
 
         [HttpPost]
-        public IActionResult UpdateProduto(Produto produto)
+        public IActionResult UpdatePedido(Pedido pedido)
         {
-            _produtoService.UpdateProduto(produto);
-            return RedirectToAction(nameof(Index));
+            _adminService.UpdatePedido(pedido);
+            return RedirectToAction(nameof(GetAllPedidos));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

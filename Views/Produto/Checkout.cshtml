@@ -5,6 +5,7 @@
 <div asp-validation-summary="All" class="text-danger"></div>
 
 <form asp-action="Checkout" asp-controller="Produto" method="post">
+    <input type="hidden" asp-for="DataPedido" value="@DateTime.Now" />
     <h3>Entregar para:</h3>
     <div class="form-group">
         <label asp-for="NomeCompleto">Nome:</label>

@@ -103,17 +103,14 @@ namespace com.cake_lovers.www.Services
             }
 
         }
-
         public IQueryable<Pedido> GetAllPedidos()
         {
             return _context.Pedidos;
         }
-
         public Pedido GetPedidoPorId(int id)
         {
             return _context.Pedidos.FirstOrDefault(p => p.PedidoId == id);
         }
-
         public void DeletarPedidoPorId(int id)
         {
             var pedido = _context.Pedidos.FirstOrDefault(predicate => predicate.PedidoId == id);
@@ -122,6 +119,35 @@ namespace com.cake_lovers.www.Services
                 _context.Pedidos.Remove(pedido);
                 _context.SaveChanges();
             }
+        }
+        public void UpdatePedido(Pedido pedido)
+        {
+            var pedidoDb = _context.Pedidos.FirstOrDefault(db => db.PedidoId == pedido.PedidoId);
+            if(pedidoDb != null)
+            {
+                pedidoDb.DataPedido = pedido.DataPedido;
+                pedidoDb.SituacaoPagamento = pedido.SituacaoPagamento;
+                pedidoDb.SituacaoEntrega = pedido.SituacaoEntrega;
+                pedidoDb.NomeCompleto = pedido.NomeCompleto;
+                pedidoDb.Email = pedido.Email;
+                pedidoDb.Telefone = pedido.Telefone;
+                pedidoDb.Complemento = pedido.Complemento;
+                pedidoDb.Numero = pedido.Numero;
+                pedidoDb.Rua = pedido.Rua;
+                pedidoDb.Bairro = pedido.Bairro;
+                pedidoDb.Cidade = pedido.Cidade;
+                pedidoDb.Estado = pedido.Estado;
+                pedidoDb.CEP = pedido.CEP;
+                pedidoDb.GiftWrap = pedido.GiftWrap;
+                pedidoDb.LinhaDeProdutos = pedido.LinhaDeProdutos.Select(lp => new CartLine
+                {
+                    Produto = lp.Produto, // Ajustar conforme a estrutura do banco
+                    Quantidade = lp.Quantidade
+                }).ToList();
+                _context.Update(pedidoDb);
+                _context.SaveChanges();
+            }
+
         }
     }
 }

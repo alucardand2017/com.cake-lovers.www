@@ -121,9 +121,9 @@
                             <td class="col-1 text-center align-middle">@Html.DisplayFor(model => model.Produtos[i].Estoque)</td>
 
                             <td class="col-2 text-center align-middle">
-                                <a class="btn btn-sm btn-danger" asp-controller="Admin" asp-action="DeletaProduto" asp-route-id="@Model.Produtos[i].Id"><i class="fa fa-trash"></i></a>
+                                <a class="btn btn-sm btn-primary" asp-controller="Admin" asp-action="UpdateProduto" asp-route-idProduto="@Model.Produtos[i].Id"><i class="fa-solid fa-magnifying-glass"></i></a>
                                 <a class="btn btn-sm btn-warning" asp-controller="Admin" asp-action="UpdateProduto" asp-route-idProduto="@Model.Produtos[i].Id"><i class="fa fa-edit"></i></a>
-
+                                <a class="btn btn-sm btn-danger" asp-controller="Admin" asp-action="DeletaProduto" asp-route-id="@Model.Produtos[i].Id"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                     }
@@ -146,7 +146,7 @@
 
 @section Scripts {
     @{
-       
+
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
        }
