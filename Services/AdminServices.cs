@@ -50,6 +50,9 @@ namespace com.cake_lovers.www.Services
             }
 
         }
+
+
+
         public async Task<Produto> AddProduto(Produto produto)
         {
             if (produto == null)
@@ -68,11 +71,10 @@ namespace com.cake_lovers.www.Services
         {
             return _context.Produtos.Where(p => p.Categoria == termo || p.Categoria == null).ToList();
         }
-        public Produto GetAllProdutosForId(int? id)
+        public Produto GetProdutosPorId(int? id)
         {
             if (id.HasValue)
             {
-
                 return _context.Produtos.FirstOrDefault(p => p.Id == id);
             }
             throw new ArgumentNullException("Não foi possível encontrar o produto solicitado");
@@ -103,6 +105,10 @@ namespace com.cake_lovers.www.Services
             }
 
         }
+
+
+
+
         public IQueryable<Pedido> GetAllPedidos()
         {
             return _context.Pedidos;

@@ -40,7 +40,7 @@ namespace com.cake_lovers.www.Migrations
 
                     b.HasIndex("ProdutoId");
 
-                    b.ToTable("CartLine");
+                    b.ToTable("CartLine", (string)null);
                 });
 
             modelBuilder.Entity("com.cake_lovers.www.Models.Contato", b =>
@@ -63,7 +63,7 @@ namespace com.cake_lovers.www.Migrations
 
                     b.HasKey("ContatoId");
 
-                    b.ToTable("Contatos");
+                    b.ToTable("Contatos", (string)null);
                 });
 
             modelBuilder.Entity("com.cake_lovers.www.Models.Imagem", b =>
@@ -91,7 +91,7 @@ namespace com.cake_lovers.www.Migrations
 
                     b.HasIndex("ProdutoId");
 
-                    b.ToTable("Imagens");
+                    b.ToTable("Imagens", (string)null);
                 });
 
             modelBuilder.Entity("com.cake_lovers.www.Models.Pedido", b =>
@@ -154,7 +154,7 @@ namespace com.cake_lovers.www.Migrations
 
                     b.HasKey("PedidoId");
 
-                    b.ToTable("Pedidos");
+                    b.ToTable("Pedidos", (string)null);
                 });
 
             modelBuilder.Entity("com.cake_lovers.www.Models.Produto", b =>
@@ -187,7 +187,7 @@ namespace com.cake_lovers.www.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Produtos");
+                    b.ToTable("Produtos", (string)null);
                 });
 
             modelBuilder.Entity("com.cake_lovers.www.Models.CartLine", b =>

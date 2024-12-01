@@ -75,7 +75,7 @@ else
 
 <br />
 <div class="row">
-        <a class="btn btn-primary col-1" title="Voltar" asp-action="GettAllPedidos" asp-controller="Admin"><i class="fa fa-arrow-circle-left"></i> Voltar</a>
+        <a class="btn btn-primary col-1" title="Voltar" asp-action="GetAllPedidos" asp-controller="Admin"><i class="fa fa-arrow-circle-left"></i> Voltar</a>
     <form class="col-2" asp-controller="Admin" asp-action="DeletarPedido" method="post">
         <input asp-for="PedidoId" type="hidden" value="@Model.PedidoId" />
         <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Deletar</button>

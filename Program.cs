@@ -1,18 +1,19 @@
 using com.cake_lovers.www.Data;
 using com.cake_lovers.www.Models;
 using com.cake_lovers.www.Services;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Migrations;
 using System.Globalization;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Localization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 ConfigurationManager configuration = builder.Configuration; // allows both to access and to set up the config
 var connectionString = builder.Configuration.GetConnectionString("CakeLoversDB");
 
-var cultureInfo = new CultureInfo("pt-BR");
-CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
-CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+var defaultCulture = new CultureInfo("pt-BR");
+CultureInfo.DefaultThreadCurrentCulture = defaultCulture;
+CultureInfo.DefaultThreadCurrentUICulture = defaultCulture;
+
 
 
 builder.Services.AddDbContext<CakeLoversDbContext>(opt
@@ -46,6 +47,12 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseRequestLocalization(new RequestLocalizationOptions
+{
+    DefaultRequestCulture = new RequestCulture(defaultCulture),
+    SupportedCultures = new[] { defaultCulture },
+    SupportedUICultures = new[] { defaultCulture }
+});
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseSession();

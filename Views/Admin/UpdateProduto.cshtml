@@ -1,0 +1,66 @@
+﻿@using System.Globalization;
+@model Produto
+
+@{
+    ViewData["Title"] = "Atualizar Produto";
+}
+
+<h2>Atualizar Produto</h2>
+
+<form asp-action="UpdateProduto" asp-controller="Admin" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label asp-for="NomeProduto" class="form-label"></label>
+        <input asp-for="NomeProduto" class="form-control" />
+        <span asp-validation-for="NomeProduto" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Descricao" class="form-label"></label>
+        <textarea asp-for="Descricao" class="form-control" rows="3"></textarea>
+        <span asp-validation-for="Descricao" class="text-danger"></span>
+    </div>
+
+<div class="mb-3">
+        <label asp-for="Preco">Preço</label>
+        <input asp-for="Preco" type="text" step="0.01" class="form-control" id="Preco" name="Preco" value="@Model.Preco.ToString("0.00")" required />
+        </div>
+
+
+    <div class="mb-3">
+        <label asp-for="Estoque" class="form-label"></label>
+        <input asp-for="Estoque" class="form-control" />
+        <span asp-validation-for="Estoque" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Categoria" class="form-label">Categoria</label>
+        <select class="form-select" asp-for="Categoria">
+            <option value="promocao">Promoção</option>
+            <option value="tematico">Temáticos</option>
+            <option value="maisvendido">MaisVendidos</option>
+            <option value="saudavel">Saudável</option>
+            <option value="restrito">Restrição</option>
+            <option value="premium">Premium</option>
+        </select>
+        <span asp-validation-for="Categoria" class="text-danger"></span>
+    </div>
+
+        <input asp-for="ImagePath" class="form-control" type="hidden" value="@Model.ImagePath" />
+
+    <input type="hidden" asp-for="Id" />
+
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+</form>
+
+<script>
+            $(document).ready(function () {
+                $('#Preco').mask('000.000.000,00', { reverse: true });
+            });
+        </script>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+       }
+
