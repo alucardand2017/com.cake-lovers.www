@@ -26,7 +26,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Carrinho" asp-action="GetAllProdutos">CupCakes</a>
+                            <a class="nav-link" asp-area="" asp-controller="Produto" asp-action="EscolherProdutos">CupCakes</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Contato">Contato</a>
@@ -42,10 +42,9 @@
                                 Gestão
                             </a>
                             <ul class="dropdown-menu bg-dark text-white " aria-labelledby="navbarDropdown">
-                                <li><a class="nav-link " asp-area="" asp-controller="Produto" asp-action="Index">Produtos</a></li>
-                                <li><a class="nav-link " asp-area="" asp-controller="Cliente" asp-action="Index">Clientes</a></li>
-                                <li><a class="nav-link " asp-area="" asp-controller="Pedido" asp-action="GetAllPedidos">Pedidos</a></li>
-                                <li><a class="nav-link " asp-area="" asp-controller="Contato" asp-action="Index">Contatos</a></li>
+                                <li><a class="nav-link " asp-area="" asp-controller="Admin" asp-action="GetAllProdutos">Produtos</a></li>
+                                <li><a class="nav-link " asp-area="" asp-controller="Admin" asp-action="GetAllPedidos">Pedidos</a></li>
+                                <li><a class="nav-link " asp-area="" asp-controller="Admin" asp-action="GetAllContatos">Contatos</a></li>
 
 
                             </ul>

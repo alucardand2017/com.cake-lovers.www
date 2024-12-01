@@ -1,0 +1,82 @@
+﻿@model Pedido
+
+@{
+    ViewData["Title"] = "Visualização do Pedido";
+}
+
+<h1>Detalhes do Pedido</h1>
+
+<div class="card mb-3">
+    <div class="card-header">
+        Pedido #@Model.PedidoId - Data: @Model.DataPedido?.ToString("dd/MM/yyyy")
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">Pago?</dt>
+            <dd class="col-sm-9">@(Model.SituacaoPagamento!=null? Model.SituacaoPagamento:"Não informado")</dd>
+
+            <dt class="col-sm-3">Entregou?</dt>
+            <dd class="col-sm-9">@(Model.SituacaoEntrega!=null? Model.SituacaoEntrega:"Não informado")</dd>
+
+            <dt class="col-sm-3">Nome</dt>
+            <dd class="col-sm-9">@Model.NomeCompleto</dd>
+
+            <dt class="col-sm-3">Email</dt>
+            <dd class="col-sm-9">@Model.Email</dd>
+
+            <dt class="col-sm-3">Telefone</dt>
+            <dd class="col-sm-9">@Model.Telefone</dd>
+
+            <dt class="col-sm-3">Complemento</dt>
+            <dd class="col-sm-9">@Model.Complemento</dd>
+
+            <dt class="col-sm-3">Endereço</dt>
+            <dd class="col-sm-9">@($"{Model.Rua}, {Model.Numero}, {Model.Bairro}, {Model.Cidade} - {Model.Estado}, {Model.CEP}")</dd>
+
+            <dt class="col-sm-3">Presente?</dt>
+            <dd class="col-sm-9">@(Model.GiftWrap ? "Sim" : "Não")</dd>
+        </dl>
+    </div>
+</div>
+
+<h2>Produtos no Pedido</h2>
+@if (Model.LinhaDeProdutos.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Preço Unitário</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.LinhaDeProdutos)
+            {
+                var soma = item.Quantidade * item.Produto.Preco;
+                <tr>
+                    <td>@item.Produto.NomeProduto</td>
+                    <td>@item.Quantidade</td>
+                    <td>@item.Produto.Preco.ToString("C")</td>
+                    <td>@soma.ToString("C")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Nenhum produto encontrado neste pedido.</p>
+}
+
+<div class="mt-4">
+    <a asp-controller="Admin" asp-action="GetAllPedidos" class="btn btn-primary"><i class="fa fa-arrow-circle-left"></i> Voltar</a>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+       }

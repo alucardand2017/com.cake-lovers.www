@@ -3,7 +3,7 @@ using com.cake_lovers.www.Models.ModelView;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace com.cake_lovers.www.Controllers
+namespace com.cake_lovers.www.Controllers.Desuso
 {
     public class ClienteController : Controller
     {

@@ -1,17 +1,54 @@
 ﻿using com.cake_lovers.www.Data;
 using com.cake_lovers.www.Models;
 using com.cake_lovers.www.Models.ModelView;
-using Microsoft.AspNetCore.Mvc;
 
 namespace com.cake_lovers.www.Services
 {
-    public class ProdutoService
+    public class AdminServices
     {
         private readonly CakeLoversDbContext _context;
 
-        public ProdutoService(CakeLoversDbContext context)
+        public AdminServices(CakeLoversDbContext context)
         {
             _context = context;
+        }
+        public int AddContato(ContatoModel model)
+        {
+            if (model == null)
+            {
+                throw new ArgumentNullException("Não há dados para adicionar um contato");
+            }
+            var contato = new Contato()
+            {
+                Mensagem= model.Mensagem,
+                Nome= model.Nome,
+                Date= DateTime.Now,
+                Email= model.Email,
+            };
+            _context.Contatos.Add(contato);
+            return _context.SaveChanges();
+        }
+        public List<Contato> GetAllContatos()
+        {
+            return _context.Contatos.ToList();
+        }
+        public Contato GetContatoPorId(int id)
+        {
+            if (id > 0)
+            {
+                return _context.Contatos.FirstOrDefault(p => p.ContatoId == id);
+            }
+            throw new ArgumentNullException("Não foi possível encontrar o contato solicitado");
+        }
+        public void DeletarContatoPorId(int? id)
+        {
+            var contato = _context.Contatos.FirstOrDefault(predicate => predicate.ContatoId == id);
+            if (contato != null)
+            {
+                _context.Contatos.Remove(contato);
+                _context.SaveChanges();
+            }
+
         }
         public async Task<Produto> AddProduto(Produto produto)
         {
@@ -23,9 +60,9 @@ namespace com.cake_lovers.www.Services
             await _context.SaveChangesAsync();
             return produto;
         }
-        public List<Produto> GetAllProdutos()
+        public IQueryable<Produto> GetAllProdutos()
         {
-            return _context.Produtos.ToList();
+            return _context.Produtos;
         }
         public List<Produto> GetAllProdutosCategoria(string termo)
         {
@@ -66,14 +103,25 @@ namespace com.cake_lovers.www.Services
             }
 
         }
-        public void SalvarPedido(Pedido pedido)
+
+        public IQueryable<Pedido> GetAllPedidos()
         {
-            _context.AttachRange(pedido.LinhaDeProdutos.Select(l => l.Produto));
-            if (pedido.PedidoId == 0)
+            return _context.Pedidos;
+        }
+
+        public Pedido GetPedidoPorId(int id)
+        {
+            return _context.Pedidos.FirstOrDefault(p => p.PedidoId == id);
+        }
+
+        public void DeletarPedidoPorId(int id)
+        {
+            var pedido = _context.Pedidos.FirstOrDefault(predicate => predicate.PedidoId == id);
+            if (pedido != null)
             {
-                _context.Pedidos.Add(pedido);
+                _context.Pedidos.Remove(pedido);
+                _context.SaveChanges();
             }
-            _context.SaveChanges();
         }
     }
 }

@@ -40,7 +40,7 @@
                             <td class="col-2 text-center">@Html.DisplayFor(model => model.Contatos[i].Email)</td>
                             <td class="col-4 text-center">@Html.DisplayFor(model => model.Contatos[i].Mensagem)</td>
                             <td class="col-2 text-center align-middle">
-                                <a class="btn btn-sm btn-danger" asp-action="DeletaContato" asp-route-idCliente="@Model.Contatos[i].ContatoId"><i class="fa fa-trash"></i></a>
+                                <a class="btn btn-sm btn-danger"asp-controller="Admin" asp-action="DeletaContato" asp-route-id="@Model.Contatos[i].ContatoId"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                     }

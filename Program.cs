@@ -2,6 +2,7 @@ using com.cake_lovers.www.Data;
 using com.cake_lovers.www.Models;
 using com.cake_lovers.www.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations;
 using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,8 +30,10 @@ builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
 
 builder.Services.AddScoped<ProdutoService, ProdutoService>();
-builder.Services.AddScoped<ContatoService, ContatoService>();
+builder.Services.AddScoped<AdminServices, AdminServices>();
 builder.Services.AddScoped<IPedidoRepository, EFPedidoRepository>();
+builder.Services.AddScoped<IProdutoRepository, EFProdutoRepository>();
+
 builder.Services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 var app = builder.Build();

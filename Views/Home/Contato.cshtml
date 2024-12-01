@@ -1,18 +1,13 @@
 ﻿@using com.cake_lovers.www.Models.ModelView;
-@model ContatoModel
+@model Contato
 @{
     ViewData["Title"] = "Contato";
 }
 
 <h1>@ViewData["Title"]</h1>
 <p>Entre em contato conosco preenchendo o formulário abaixo:</p>
-@if (Model.Enviado)
-{
-    <div class="alert alert-success mt-3">
-        Obrigado pelo seu contato! Entraremos em contato em breve.
-    </div>
-}
-<form method="post" asp-action="AdicionaMensagemContato" asp-controller="Contato">
+
+<form method="post" asp-action="AdicionaMensagemContato" asp-controller="Produto">
     <input type="hidden" class="form-control" id="Date" name="Date" asp-for="Date" value="@DateTime.Now" />
     <div class="form-group">
         <label for="Nome">Nome</label>

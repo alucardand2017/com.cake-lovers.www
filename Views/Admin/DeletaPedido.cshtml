@@ -1,0 +1,93 @@
+﻿@model Pedido
+
+@{
+    ViewData["Title"] = "Visualização do Pedido";
+}
+
+<h5 class="display-6"><span class="display-6 text-info"><i class="fa fa-solid fa-person"></i> Deletar Pedido </span></h5>
+
+
+<h3> Deseja deletar o seguinte pedido:</h3>
+
+<div class="card mb-3">
+    <div class="card-header">
+        Pedido #@Model.PedidoId - Data: @Model.DataPedido?.ToString("dd/MM/yyyy")
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">Pago?</dt>
+            <dd class="col-sm-9">@(Model.SituacaoPagamento != null ? Model.SituacaoPagamento : "Não informado")</dd>
+
+            <dt class="col-sm-3">Entregou?</dt>
+            <dd class="col-sm-9">@(Model.SituacaoEntrega != null ? Model.SituacaoEntrega : "Não informado")</dd>
+
+            <dt class="col-sm-3">Nome</dt>
+            <dd class="col-sm-9">@Model.NomeCompleto</dd>
+
+            <dt class="col-sm-3">Email</dt>
+            <dd class="col-sm-9">@Model.Email</dd>
+
+            <dt class="col-sm-3">Telefone</dt>
+            <dd class="col-sm-9">@Model.Telefone</dd>
+
+            <dt class="col-sm-3">Complemento</dt>
+            <dd class="col-sm-9">@Model.Complemento</dd>
+
+            <dt class="col-sm-3">Endereço</dt>
+            <dd class="col-sm-9">@($"{Model.Rua}, {Model.Numero}, {Model.Bairro}, {Model.Cidade} - {Model.Estado}, {Model.CEP}")</dd>
+
+            <dt class="col-sm-3">Presente?</dt>
+            <dd class="col-sm-9">@(Model.GiftWrap ? "Sim" : "Não")</dd>
+        </dl>
+    </div>
+</div>
+
+<h2>Produtos no Pedido</h2>
+@if (Model.LinhaDeProdutos.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Preço Unitário</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.LinhaDeProdutos)
+            {
+                var soma = item.Quantidade * item.Produto.Preco;
+                <tr>
+                    <td>@item.Produto.NomeProduto</td>
+                    <td>@item.Quantidade</td>
+                    <td>@item.Produto.Preco.ToString("C")</td>
+                    <td>@soma.ToString("C")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Nenhum produto encontrado neste pedido.</p>
+}
+
+<br />
+<div class="row">
+        <a class="btn btn-primary col-1" title="Voltar" asp-action="GettAllPedidos" asp-controller="Admin"><i class="fa fa-arrow-circle-left"></i> Voltar</a>
+    <form class="col-2" asp-controller="Admin" asp-action="DeletarPedido" method="post">
+        <input asp-for="PedidoId" type="hidden" value="@Model.PedidoId" />
+        <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Deletar</button>
+    </form>
+</div>
+<br />
+<hr />
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+       }

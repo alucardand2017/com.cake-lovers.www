@@ -1,7 +1,9 @@
-﻿using com.cake_lovers.www.Models;
+﻿using com.cake_lovers.www.Data;
+using com.cake_lovers.www.Models;
 using com.cake_lovers.www.Models.ModelView;
 using com.cake_lovers.www.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Globalization;
 
@@ -10,12 +12,17 @@ namespace com.cake_lovers.www.Controllers
     public class ProdutoController : Controller
     {
         private readonly ILogger<ProdutoController> _logger;
+        private readonly CakeLoversDbContext _context;
         private readonly ProdutoService _produtoService;
+        private readonly Cart cart;
 
-        public ProdutoController(ILogger<ProdutoController> logger, ProdutoService produtoService)
+
+        public ProdutoController(ILogger<ProdutoController> logger, CakeLoversDbContext produtoService, Cart cart, ProdutoService produto)
         {
+            _produtoService = produto;
             _logger = logger;
-            _produtoService = produtoService;
+            _context = produtoService;
+            this.cart = cart;
         }
         [HttpGet]
         public IActionResult Index(string? termo)
@@ -23,7 +30,7 @@ namespace com.cake_lovers.www.Controllers
             try
             {
                 var produtos = _produtoService.GetAllProdutos();
-                var view = new ProdutoEscolhaModelView { Produtos = produtos, NovoProduto = new Produto() };
+                var view = new ProdutoModel { Produtos = produtos, NovoProduto = new Produto() };
                 return View(view);
             }
             catch (Exception e)
@@ -33,107 +40,63 @@ namespace com.cake_lovers.www.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllProdutos()
+        public ViewResult EscolherProdutos(string? category, int productPage = 1)
+        => View(new CarrinhoModel
+        {
+            Produtos = _context.Produtos
+                    .Where(p => category == null || p.Categoria == category)
+                   .OrderBy(p => p.Id),
+
+            PagingInfo = new PagingInfo
+            {
+                CurrentPage = productPage,
+                TotalItems = category == null
+                ? _context.Produtos.Count()
+                        : _context.Produtos.Where(e =>
+                            e.Categoria == category).Count()
+            },
+            CurrentCategory = category
+        });
+
+        [HttpGet]
+        public ViewResult Checkout() => View(new Pedido());
+
+        [HttpPost]
+        public IActionResult AdicionaMensagemContato(Contato contato)
         {
             try
             {
-                var produtos = _produtoService.GetAllProdutos();
-                return View(produtos);
+                var resultado = _context.Contatos.Add(contato);
+                _context.SaveChanges();
+                return RedirectToPage("/Agradecimento");
             }
             catch (Exception e)
             {
-                throw new ArgumentException($"Erro = {e.Message} + \n Trace = {e.StackTrace}");
+                throw new ArgumentException($"Erro ao adicionar contato. -> {e.Message} \n ->{e.StackTrace}");
             }
+
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AdicionaProduto(ProdutoEscolhaModelView model)
+        public IActionResult Checkout(Pedido order)
         {
-            try
+
+            if (cart.Lines.Count() == 0)
             {
-                ModelState.Remove("Id");
-                ModelState.Remove("NovoProduto.ImagePath");
-
-                if (!ModelState.IsValid)
-                {
-                    return RedirectToAction("Index");
-                }
-                if (model.ProdutoImagem != null)
-                {
-                    var uploadsFolder = Path.Combine("wwwroot", "images");
-                    var uniqueFileName = $"{Guid.NewGuid()}_{model.ProdutoImagem.FileName}";
-                    var filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await model.ProdutoImagem.CopyToAsync(fileStream);
-                    }
-
-                    model.NovoProduto.ImagePath = $"/images/{uniqueFileName}";
-                    //decimal.TryParse(model.NovoProduto.Preco.ToString("C"), NumberStyles.Any, new CultureInfo("pt-BR"), out decimal valor);
-                    //model.NovoProduto.Preco = valor;
-                    await _produtoService.AddProduto(model.NovoProduto);
-                }
-                return RedirectToAction(nameof(Index));
+                ModelState.AddModelError("", "Desculpe, O carrinho está vazio!");
             }
-            catch (Exception e)
+            if (ModelState.IsValid)
             {
-
-                throw new ArgumentException($"Error = {e.Message}");
+                order.LinhaDeProdutos = cart.Lines.ToArray();
+                _produtoService.SalvarPedido(order);
+                cart.Clear();
+                return RedirectToPage("/ConclusaoPedido", new { PedidoId = order.PedidoId });
             }
-
-        }
-
-        [HttpGet]
-        public IActionResult SolicitaDelecaoProduto(int? id)
-        {
-            try
+            else
             {
-                if (id.HasValue)
-                {
-                    var produto = _produtoService.GetAllProdutosForId(id);
-                    return View(produto);
-                }
-                throw new ArgumentException($"Error = erro ao solicitar o produto para deletar");
-            }
-            catch (Exception e)
-            {
-                throw new ArgumentException($"Error = {e.Message}");
+                return View();
             }
         }
-        [HttpGet]
-        public IActionResult DeletarProduto(int? id)
-        {
-            try
-            {
-                if (id.HasValue)
-                {
-                     _produtoService.DeletarProdutoPorId(id);
-                    return RedirectToAction(nameof(Index));
-                }
-                throw new ArgumentException($"Error = não tem id para deleção");
-            }
-            catch (Exception e)
-            {
-                throw new ArgumentException($"Error = {e.Message}");
-            }
-        }
-
-        [HttpGet]
-        public IActionResult UpdateProdutoPorId(int? id)
-        {
-            throw new ArgumentException();
-        }
-
-        [HttpPost]
-        public IActionResult UpdateProduto(Produto produto)
-        {
-            _produtoService.UpdateProduto(produto);
-            return RedirectToAction(nameof(Index));
-        }
-
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

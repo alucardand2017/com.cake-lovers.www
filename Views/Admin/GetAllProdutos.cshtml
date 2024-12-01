@@ -1,4 +1,4 @@
-﻿@model com.cake_lovers.www.Models.ModelView.ProdutoEscolhaModelView
+﻿@model com.cake_lovers.www.Models.ModelView.ProdutoModel
 
 @{
     ViewData["Title"] = "CupCakes";
@@ -21,7 +21,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="post" id="financeiroForm" asp-action="AdicionaProduto" enctype="multipart/form-data">
+                <form method="post" id="financeiroForm" asp-action="AdicionaProduto" asp-controller="Admin" enctype="multipart/form-data">
                     <div class="row mb-2">
                         <div class="mt-3 col-sm-6">
                             <label class="form-label" asp-for="NovoProduto.NomeProduto"></label>
@@ -121,8 +121,8 @@
                             <td class="col-1 text-center align-middle">@Html.DisplayFor(model => model.Produtos[i].Estoque)</td>
 
                             <td class="col-2 text-center align-middle">
-                                <a class="btn btn-sm btn-danger" asp-action="SolicitaDelecaoProduto" asp-route-id="@Model.Produtos[i].Id"><i class="fa fa-trash"></i></a>
-                                <a class="btn btn-sm btn-warning" asp-action="UpdateProduto" asp-route-idProduto="@Model.Produtos[i].Id"><i class="fa fa-edit"></i></a>
+                                <a class="btn btn-sm btn-danger" asp-controller="Admin" asp-action="DeletaProduto" asp-route-id="@Model.Produtos[i].Id"><i class="fa fa-trash"></i></a>
+                                <a class="btn btn-sm btn-warning" asp-controller="Admin" asp-action="UpdateProduto" asp-route-idProduto="@Model.Produtos[i].Id"><i class="fa fa-edit"></i></a>
 
                             </td>
                         </tr>

@@ -1,0 +1,66 @@
+﻿@model com.cake_lovers.www.Models.ModelView.PedidoModel
+
+@{
+    ViewData["Title"] = "Pedidos";
+}
+
+<h5 class="display-6"><span class="display-6 text-info"><i class="fa fa-solid fa-person"></i> Gerenciar Pedidos </span></h5>
+
+<br />
+<a class="btn btn-primary" title="Voltar" asp-action="Index" asp-controller="Home"><i class="fa fa-arrow-circle-left"></i> Voltar</a>
+<br />
+<hr />
+
+
+
+
+<h5 class="mt-5">PEDIDOS REGISTRADOS</h5>
+<div class="row">
+    <div class="row">
+
+        <table class="table table-striped table-sm fs-6" id="tabela-familiares">
+            <thead>
+                <tr>
+                    <th class="text-center col">@Html.DisplayNameFor(model => model.Pedidos[0].PedidoId)</th>
+                    <th class="text-center col">@Html.DisplayNameFor(model => model.Pedidos[0].DataPedido)</th>
+                    <th class="text-center col">@Html.DisplayNameFor(model => model.Pedidos[0].NomeCompleto)</th>
+                    <th class="text-center col">@Html.DisplayNameFor(model => model.Pedidos[0].CEP)</th>
+                    <th class="text-center col">@Html.DisplayNameFor(model => model.Pedidos[0].Telefone)</th>
+                    <th class="text-center col">@Html.DisplayNameFor(model => model.Pedidos[0].SituacaoPagamento)</th>
+                    <th class="text-center col">@Html.DisplayNameFor(model => model.Pedidos[0].SituacaoEntrega)</th>
+                    <th class="text-center col">Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Pedidos.Count() > 0)
+                {
+                    for (int i = 0; i < Model.Pedidos.Count(); i++)
+                    {
+                        <tr>
+                            <td class="col text-center">@Html.DisplayFor(model => model.Pedidos[i].PedidoId)</td>
+                            <td class="col text-center">@Html.DisplayFor(model => model.Pedidos[i].DataPedido)</td>
+                            <td class="col text-center">@Html.DisplayFor(model => model.Pedidos[i].NomeCompleto)</td>
+                            <td class="col text-center">@Html.DisplayFor(model => model.Pedidos[i].CEP)</td>
+                            <td class="col text-center">@Html.DisplayFor(model => model.Pedidos[i].Telefone)</td>
+                            <td class="col text-center">@(Model.Pedidos[i].SituacaoPagamento != null ? Model.Pedidos[i].SituacaoPagamento : "Não informado")</td>
+                            <td class="col text-center">@(Model.Pedidos[i].SituacaoEntrega != null ? Model.Pedidos[i].SituacaoEntrega : "Não informado")</td>
+                            <td class="col text-center align-middle">
+                                <a class="btn btn-sm btn-warning" asp-action="VisualizaPedido" asp-route-id="@Model.Pedidos[i].PedidoId"><i class="fa-solid fa-magnifying-glass"></i></a>
+                                <a class="btn btn-sm btn-danger" asp-action="DeletaPedido" asp-route-id="@Model.Pedidos[i].PedidoId"><i class="fa fa-edit"></i></a>
+
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

@@ -4,7 +4,7 @@ using com.cake_lovers.www.Models.ModelView;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace com.cake_lovers.www.Controllers
+namespace com.cake_lovers.www.Controllers.Desuso
 {
     public class PedidoController : Controller
     {
@@ -12,14 +12,14 @@ namespace com.cake_lovers.www.Controllers
         private readonly Cart cart;
         private readonly ILogger<PedidoController> _logger;
 
-        public PedidoController(ILogger<PedidoController> logger, IPedidoRepository repository , Cart cart )
+        public PedidoController(ILogger<PedidoController> logger, IPedidoRepository repository, Cart cart)
         {
             _logger = logger;
             this.repository = repository;
             this.cart = cart;
         }
 
-
+        [HttpGet]
         public IActionResult GettAllPedidos()
         {
 
@@ -29,6 +29,7 @@ namespace com.cake_lovers.www.Controllers
             });
         }
 
+        [HttpGet]
         public ViewResult Checkout() => View(new Pedido());
 
         [HttpPost]
@@ -44,7 +45,7 @@ namespace com.cake_lovers.www.Controllers
                 order.LinhaDeProdutos = cart.Lines.ToArray();
                 repository.SalvarPedido(order);
                 cart.Clear();
-                return RedirectToPage("/ConclusaoPedido", new { PedidoId = order.PedidoId });
+                return RedirectToPage("/ConclusaoPedido", new { order.PedidoId });
             }
             else
             {

@@ -1,0 +1,35 @@
+﻿@model com.cake_lovers.www.Models.Produto
+
+@{
+    ViewData["Title"] = "CupCakes";
+}
+
+<h5 class="display-6"><span class="display-6 text-info"><i class="fa fa-solid fa-person"></i> Deletar Cupcake </span></h5>
+
+
+
+<div class="card h-100 col-3 mb-5 mt-5">
+    <img src="@Model.ImagePath" class="card-img-top" height="250px" alt="...">
+</div>
+
+
+<h4> Deseja deletar o produto <b>@Model.NomeProduto </b> - @Model.Descricao - @Model.Preco.ToString("C") - Categoria @Model.Categoria</h4>
+
+<br />
+<div class="row">
+    <a class="btn btn-primary col-1" title="Voltar" asp-action="GetAllProdutos" asp-controller="Admin"><i class="fa fa-arrow-circle-left"></i> Voltar</a>
+    <form class="col-2" asp-controller="Admin" asp-action="DeletarProduto" method="post">
+        <input asp-for="Id" type="hidden" value="@Model.Id" />
+        <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Deletar</button>
+    </form>
+</div>
+<br />
+<hr />
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+       }

@@ -4,7 +4,7 @@
 <p>Por gentileza, entre com as informações para entrega:</p>
 <div asp-validation-summary="All" class="text-danger"></div>
 
-<form asp-action="Checkout" method="post">
+<form asp-action="Checkout" asp-controller="Produto" method="post">
     <h3>Entregar para:</h3>
     <div class="form-group">
         <label asp-for="NomeCompleto">Nome:</label>

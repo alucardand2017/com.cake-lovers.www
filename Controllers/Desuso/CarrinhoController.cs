@@ -5,7 +5,7 @@ using com.cake_lovers.www.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace com.cake_lovers.www.Controllers
+namespace com.cake_lovers.www.Controllers.Desuso
 {
     public class CarrinhoController : Controller
     {

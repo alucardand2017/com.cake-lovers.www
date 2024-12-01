@@ -4,7 +4,7 @@ using System.Web;
 
 namespace com.cake_lovers.www.Models.ModelView
 {
-    public class ProdutoEscolhaModelView
+    public class ProdutoModel
     {
         public List<Produto> Produtos { get; set; } = new List<Produto>();
         

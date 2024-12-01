@@ -1,5 +1,6 @@
 ﻿using com.cake_lovers.www.Models;
 using com.cake_lovers.www.Models.ModelView;
+using com.cake_lovers.www.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -28,26 +29,9 @@ namespace com.cake_lovers.www.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult Contato(int idTemp)
+        public IActionResult Contato()
         {
-            var data = ViewBag.Data; // Recebe o valor do primeiro controlador
-
-            var contato = new ContatoModel()
-            {
-                Email = string.Empty,
-                Enviado = false,
-                Nome = string.Empty,
-                Mensagem = string.Empty,
-            };
-           if (idTemp > 0)
-            {
-                contato.Enviado = true;
-            }
-           else
-            {
-                contato.Enviado = false;
-            }
-            return View(contato);
+            return View(new Contato());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
