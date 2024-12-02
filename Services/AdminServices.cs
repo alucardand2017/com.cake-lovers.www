@@ -7,11 +7,12 @@ namespace com.cake_lovers.www.Services
     public class AdminServices
     {
         private readonly CakeLoversDbContext _context;
-
         public AdminServices(CakeLoversDbContext context)
         {
             _context = context;
         }
+
+
         public int AddContato(ContatoModel model)
         {
             if (model == null)
@@ -36,7 +37,8 @@ namespace com.cake_lovers.www.Services
         {
             if (id > 0)
             {
-                return _context.Contatos.FirstOrDefault(p => p.ContatoId == id);
+                var contato = _context.Contatos.FirstOrDefault(p => p.ContatoId == id);
+                return contato;
             }
             throw new ArgumentNullException("Não foi possível encontrar o contato solicitado");
         }
@@ -50,8 +52,6 @@ namespace com.cake_lovers.www.Services
             }
 
         }
-
-
 
         public async Task<Produto> AddProduto(Produto produto)
         {
@@ -105,9 +105,6 @@ namespace com.cake_lovers.www.Services
             }
 
         }
-
-
-
 
         public IQueryable<Pedido> GetAllPedidos()
         {

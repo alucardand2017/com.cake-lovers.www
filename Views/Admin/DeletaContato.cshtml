@@ -11,7 +11,11 @@
 
 <br />
 <a class="btn btn-primary" title="Voltar" asp-action="GetAllContatos" asp-controller="Admin" ><i class="fa fa-arrow-circle-left"></i> Voltar</a>
-<a class="btn btn-danger" title="Deletar" asp-action="DeletarContato" asp-controller="Admin" asp-route-id="@Model.ContatoId"><i class="fa fa-trash"></i> Deletar</a>
+
+<form class="col-2" asp-controller="Admin" asp-action="DeletarContato" method="post">
+    <input asp-for="ContatoId" type="hidden" value="@Model.ContatoId" />
+    <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Deletar</button>
+</form>
 <br />
 <hr />
 

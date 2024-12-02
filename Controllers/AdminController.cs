@@ -108,13 +108,13 @@ namespace com.cake_lovers.www.Controllers
             }
         }
         [HttpPost]
-        public IActionResult DeletarContato(int? id)
+        public IActionResult DeletarContato(int? ContatoId)
         {
             try
             {
-                if (id.HasValue)
+                if (ContatoId.HasValue)
                 {
-                    _adminService.DeletarContatoPorId(id);
+                    _adminService.DeletarContatoPorId(ContatoId);
                     return RedirectToAction(nameof(GetAllContatos));
                 }
                 throw new ArgumentException($"Error = não tem id para deleção");
@@ -124,7 +124,6 @@ namespace com.cake_lovers.www.Controllers
                 throw new ArgumentException($"Error = {e.Message}");
             }
         }
-
 
 
         [HttpGet]

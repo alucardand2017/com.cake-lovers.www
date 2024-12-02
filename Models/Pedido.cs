@@ -8,7 +8,6 @@ namespace com.cake_lovers.www.Models
     {
         [Key]
         [DisplayName("#")]
-
         public int PedidoId { get; set; }
 
         [DisplayName("Data")]
@@ -55,6 +54,6 @@ namespace com.cake_lovers.www.Models
         public bool GiftWrap { get; set; }
 
         [BindNever]
-        public virtual ICollection<CartLine> LinhaDeProdutos { get; set; } = new List<CartLine>();
+        public virtual ICollection<CartLine>? LinhaDeProdutos { get; set; } = new List<CartLine>();
     }
 }
